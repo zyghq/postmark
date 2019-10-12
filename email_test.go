@@ -14,7 +14,7 @@ var testEmail = Email{
 	Bcc:      "blank-copied@example.com",
 	Subject:  "Test",
 	Tag:      "Invitation",
-	HtmlBody: "<b>Hello</b>",
+	HTMLBody: "<b>Hello</b>",
 	TextBody: "Hello",
 	ReplyTo:  "reply@example.com",
 	Headers: []Header{

@@ -11,7 +11,7 @@ func main() {
 		From:       "no-reply@example.com",
 		To:         "tito@example.com",
 		Subject:    "Reset your password",
-		HtmlBody:   "...",
+		HTMLBody:   "...",
 		TextBody:   "...",
 		Tag:        "pw-reset",
 		TrackOpens: true,

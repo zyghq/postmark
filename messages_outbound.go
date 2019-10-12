@@ -10,7 +10,7 @@ import (
 type OutboundMessage struct {
 	// TextBody - Text body of the message.
 	TextBody string
-	// HtmlBody - Html body of the message.
+	// HTMLBody - Html body of the message.
 	HtmlBody string
 	// Body - Raw source of the message.
 	Body string

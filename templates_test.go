@@ -82,7 +82,7 @@ func TestCreateTemplate(t *testing.T) {
 		Name:     "Onboarding Email",
 		Subject:  "Hello from {{company.name}}!",
 		TextBody: "Hello, {{name}}!",
-		HtmlBody: "<html><body>Hello, {{name}}!</body></html>",
+		HTMLBody: "<html><body>Hello, {{name}}!</body></html>",
 	})
 
 	if err != nil {
@@ -109,7 +109,7 @@ func TestEditTemplate(t *testing.T) {
 		Name:     "Onboarding Emailzzzzz",
 		Subject:  "Hello from {{company.name}}!",
 		TextBody: "Hello, {{name}}!",
-		HtmlBody: "<html><body>Hello, {{name}}!</body></html>",
+		HTMLBody: "<html><body>Hello, {{name}}!</body></html>",
 	})
 	if err != nil {
 		t.Fatalf("EditTemplate: %s", err.Error())
@@ -210,7 +210,7 @@ func TestValidateTemplate(t *testing.T) {
 }
 
 var testTemplatedEmail = TemplatedEmail{
-	TemplateId: 1234,
+	TemplateID: 1234,
 	TemplateModel: map[string]interface{}{
 		"user_name": "John Smith",
 		"company": map[string]interface{}{
