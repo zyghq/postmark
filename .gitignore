@@ -27,3 +27,16 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# OS files
+*.db
+*.DS_Store
+
+# Jetbrains
+.idea/
+
+# Eclipse
+.project
+
+# Notes
+todo.md
