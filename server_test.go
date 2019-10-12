@@ -1,8 +1,8 @@
 package postmark
 
 import (
-	"testing"
 	"net/http"
+	"testing"
 
 	"goji.io/pat"
 )
@@ -34,7 +34,7 @@ func TestGetCurrentServer(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/server"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetCurrentServer()
@@ -73,7 +73,7 @@ func TestEditCurrentServer(t *testing.T) {
   "InboundSpamThreshold": 10
 }`
 	tMux.HandleFunc(pat.Put("/server"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.EditCurrentServer(Server{
