@@ -181,8 +181,8 @@ type TemplatedEmail struct {
 	TemplateAlias string `json:",omitempty"`
 	// TemplateModel: The model to be applied to the specified template to generate HtmlBody, TextBody, and Subject.
 	TemplateModel map[string]interface{} `json:",omitempty"`
-	// InlineCss: By default, if the specified template contains an HtmlBody, we will apply the style blocks as inline attributes to the rendered HTML content. You may opt-out of this behavior by passing false for this request field.
-	InlineCss bool `json:",omitempty"`
+	// InlineCSS: By default, if the specified template contains an HtmlBody, we will apply the style blocks as inline attributes to the rendered HTML content. You may opt-out of this behavior by passing false for this request field.
+	InlineCSS bool `json:"InlineCSS,omitempty"`
 	// From: The sender email address. Must have a registered and confirmed Sender Signature.
 	From string `json:",omitempty"`
 	// To: REQUIRED Recipient email address. Multiple addresses are comma separated. Max 50.
@@ -215,7 +215,7 @@ func (client *Client) SendTemplatedEmail(email TemplatedEmail) (EmailResponse, e
 	return res, err
 }
 
-// SendTemplatedEmail sends batch email using a template (TemplateID)
+// SendTemplatedEmailBatch sends batch email using a template (TemplateID)
 func (client *Client) SendTemplatedEmailBatch(emails []TemplatedEmail) ([]EmailResponse, error) {
 	var res []EmailResponse
 	var formatEmails = map[string]interface{}{

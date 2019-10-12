@@ -217,7 +217,7 @@ var testTemplatedEmail = TemplatedEmail{
 			"name": "ACME",
 		},
 	},
-	InlineCss: true,
+	InlineCSS: true,
 	From:      "sender@example.com",
 	To:        "receiver@example.com",
 	Cc:        "copied@example.com",

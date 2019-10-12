@@ -11,7 +11,7 @@ type OutboundMessage struct {
 	// TextBody - Text body of the message.
 	TextBody string
 	// HTMLBody - Html body of the message.
-	HtmlBody string
+	HTMLBody string `json:"HtmlBody"`
 	// Body - Raw source of the message.
 	Body string
 	// Tag - Tags associated with this message.
