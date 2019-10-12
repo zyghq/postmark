@@ -48,7 +48,7 @@ func TestSendEmail(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Post("/email"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	// Success
@@ -97,7 +97,7 @@ func TestSendEmailBatch(t *testing.T) {
 	]`
 
 	tMux.HandleFunc(pat.Post("/email/batch"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.SendEmailBatch([]Email{testEmail, testEmail})

@@ -31,7 +31,7 @@ func TestGetSenderSignatures(t *testing.T) {
   }`
 
 	tMux.HandleFunc(pat.Get("/senders"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetSenderSignatures(50, 0)

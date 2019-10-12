@@ -24,7 +24,7 @@ func TestGetOutboundStats(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetOutboundStats(map[string]interface{}{
@@ -65,7 +65,7 @@ func TestGetSentCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/sends"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetSentCounts(map[string]interface{}{
@@ -115,7 +115,7 @@ func TestGetBounceCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/bounces"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetBounceCounts(map[string]interface{}{
@@ -156,7 +156,7 @@ func TestGetSpamCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/spam"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetSpamCounts(map[string]interface{}{
@@ -205,7 +205,7 @@ func TestGetTrackedCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/tracked"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetTrackedCounts(map[string]interface{}{
@@ -260,7 +260,7 @@ func TestGetOpenCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/opens"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetOpenCounts(map[string]interface{}{
@@ -307,7 +307,7 @@ func TestGetPlatformCounts(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/stats/outbound/platform"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetPlatformCounts(map[string]interface{}{

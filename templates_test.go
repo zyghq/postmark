@@ -19,7 +19,7 @@ func TestGetTemplate(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/templates/:templateID"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetTemplate("1234")
@@ -50,7 +50,7 @@ func TestGetTemplates(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/templates"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, count, err := client.GetTemplates(100, 10)
@@ -75,7 +75,7 @@ func TestCreateTemplate(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Post("/templates"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.CreateTemplate(Template{
@@ -102,7 +102,7 @@ func TestEditTemplate(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Put("/templates/:templateID"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.EditTemplate("1234", Template{
@@ -127,7 +127,7 @@ func TestDeleteTemplate(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Delete("/templates/:templateID"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	// Success
@@ -187,7 +187,7 @@ func TestValidateTemplate(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Post("/templates/validate"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.ValidateTemplate(ValidateTemplateBody{
@@ -255,7 +255,7 @@ func TestSendTemplatedEmail(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Post("/email/withTemplate"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.SendTemplatedEmail(testTemplatedEmail)
@@ -286,7 +286,7 @@ func TestSendTemplatedBatch(t *testing.T) {
 	]`
 
 	tMux.HandleFunc(pat.Post("/email/batchWithTemplates"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.SendTemplatedEmailBatch([]TemplatedEmail{testTemplatedEmail, testTemplatedEmail})

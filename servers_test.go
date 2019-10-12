@@ -30,7 +30,7 @@ func TestGetServer(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/servers/:serverID"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetServer("1")
@@ -66,7 +66,7 @@ func TestEditServer(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Put("/servers/:serverID"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.EditServer("1234", Server{

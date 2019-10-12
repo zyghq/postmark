@@ -85,7 +85,7 @@ func TestGetInboundMessage(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/messages/inbound/cc5727a0-ea30-4e79-baea-aa43c9628ac4/details"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetInboundMessage("cc5727a0-ea30-4e79-baea-aa43c9628ac4")
@@ -139,7 +139,7 @@ func TestGetInboundMessages(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Get("/messages/inbound"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	_, total, err := client.GetInboundMessages(100, 0, map[string]interface{}{
@@ -165,7 +165,7 @@ func TestBypassInboundMessage(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Put("/messages/inbound/792a3e9d-0078-40df-a6b0-fc78f87bf277/bypass"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	// Success
@@ -180,7 +180,7 @@ func TestBypassInboundMessage(t *testing.T) {
 		"Message": "This message was not found or cannot be bypassed."
 	}`
 	err = client.BypassInboundMessage("792a3e9d-0078-40df-a6b0-fc78f87bf277")
-	if err.Error() != "This message was not found or cannot be bypassed." {
+	if err != nil && err.Error() != "This message was not found or cannot be bypassed." {
 		t.Fatalf("BypassInboundMessage should have failed")
 	}
 }
@@ -192,7 +192,7 @@ func TestRetryInboundMessage(t *testing.T) {
 	}`
 
 	tMux.HandleFunc(pat.Put("/messages/inbound/041e3d29-737d-491e-9a13-a94d3rjkjka13/retry"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	// Success
@@ -208,8 +208,7 @@ func TestRetryInboundMessage(t *testing.T) {
 	}`
 
 	err = client.RetryInboundMessage("041e3d29-737d-491e-9a13-a94d3rjkjka13")
-
-	if err.Error() != "This message was not found or cannot be retried." {
+	if err != nil && err.Error() != "This message was not found or cannot be retried." {
 		t.Fatalf("RetryInboundMessage should have failed")
 	}
 }
