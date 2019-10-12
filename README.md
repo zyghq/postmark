@@ -13,25 +13,29 @@ A Golang package for the using Postmark API.
 Grab your [`Server Token`](https://account.postmarkapp.com/servers/XXXX/credentials), and your [`Account Token`](https://account.postmarkapp.com/account/edit).
 
 ```go
+package main
+
 import (
-    "github.com/mrz1836/postmark"
+	"github.com/mrz1836/postmark"
 )
 
-client := postmark.NewClient("[SERVER-TOKEN]", "[ACCOUNT-TOKEN]")
+func main() {
+	client := postmark.NewClient("[SERVER-TOKEN]", "[ACCOUNT-TOKEN]")
 
-email := postmark.Email{
-	From: "no-reply@example.com",
-	To: "tito@example.com",
-	Subject: "Reset your password",
-	HtmlBody: "...",
-    TextBody: "...",
-	Tag: "pw-reset",
-	TrackOpens: true,
-}
+	email := postmark.Email{
+		From:       "no-reply@example.com",
+		To:         "tito@example.com",
+		Subject:    "Reset your password",
+		HtmlBody:   "...",
+		TextBody:   "...",
+		Tag:        "pw-reset",
+		TrackOpens: true,
+	}
 
-_, err = client.SendEmail(email)
-if err != nil {
-	panic(err)
+	_, err := client.SendEmail(email)
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 Swap out HTTPClient for use on Google App Engine:
