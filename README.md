@@ -1,6 +1,6 @@
 # Postmark
 
-[![Build Status](https://travis-ci.org/mrz1836/postmark.png?branch=master)](https://travis-ci.org/mrz1836/postmark) [![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/postmark)](https://goreportcard.com/report/github.com/mrz1836/postmark)  [![codecov.io](https://codecov.io/github/mrz1836/postmark/coverage.svg?branch=master)](https://codecov.io/github/mrz1836/postmark?branch=master) [![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://godoc.org/github.com/mrz1836/postmark)
+[![Build Status](https://travis-ci.com/mrz1836/postmark.png?branch=master)](https://travis-ci.com/mrz1836/postmark) [![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/postmark)](https://goreportcard.com/report/github.com/mrz1836/postmark)  [![codecov.io](https://codecov.io/github/mrz1836/postmark/coverage.svg?branch=master)](https://codecov.io/github/mrz1836/postmark?branch=master) [![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://godoc.org/github.com/mrz1836/postmark)
 
 A Golang package for the using Postmark API.
 
