@@ -1,5 +1,6 @@
 # Postmark
 
+[![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/postmark)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/postmark.svg?branch=master)](https://travis-ci.com/mrz1836/postmark)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/postmark)](https://goreportcard.com/report/github.com/mrz1836/postmark)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0f79f6c5a19c41ce85fe0dc5a5c288b2)](https://www.codacy.com/app/mrz1818/postmark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/postmark&amp;utm_campaign=Badge_Grade)
