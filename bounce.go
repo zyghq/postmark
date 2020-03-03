@@ -7,9 +7,6 @@ import (
 	"time"
 )
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // BounceType represents a type of bounce, and how many bounces have occurred
 // http://developer.postmarkapp.com/developer-api-bounce.html#bounce-types
 type BounceType struct {
@@ -40,9 +37,6 @@ func (client *Client) GetDeliveryStats() (DeliveryStats, error) {
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // Bounce represents a specific delivery failure
 type Bounce struct {
@@ -105,9 +99,6 @@ func (client *Client) GetBounces(count int64, offset int64, options map[string]i
 	return res.Bounces, res.TotalCount, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetBounce fetches a single bounce with bounceID
 func (client *Client) GetBounce(bounceID int64) (Bounce, error) {
 	res := Bounce{}
@@ -119,9 +110,6 @@ func (client *Client) GetBounce(bounceID int64) (Bounce, error) {
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type dumpResponse struct {
 	Body string
@@ -138,9 +126,6 @@ func (client *Client) GetBounceDump(bounceID int64) (string, error) {
 	}, &res)
 	return res.Body, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type activateBounceResponse struct {
 	Message string
@@ -160,9 +145,6 @@ func (client *Client) ActivateBounce(bounceID int64) (Bounce, string, error) {
 	}, &res)
 	return res.Bounce, res.Message, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type bouncedTagsResponse struct {
 	Tags []string `json:"tags"`

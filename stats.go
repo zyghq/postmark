@@ -5,9 +5,6 @@ import (
 	"net/url"
 )
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // OutboundStats - a brief overview of statistics for all of your outbound email.
 type OutboundStats struct {
 	// Sent - Number of sent emails
@@ -54,9 +51,6 @@ func (client *Client) GetOutboundStats(options map[string]interface{}) (Outbound
 	return res, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // SendDay - send stats for a specific day
 type SendDay struct {
 	// Date - self explanatory
@@ -89,9 +83,6 @@ func (client *Client) GetSentCounts(options map[string]interface{}) (SendCounts,
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // BounceDay - bounce stats for a specific day
 type BounceDay struct {
@@ -138,9 +129,6 @@ func (client *Client) GetBounceCounts(options map[string]interface{}) (BounceCou
 	return res, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // SpamDay - spam complaints for a specific day
 type SpamDay struct {
 	// Date - self explanatory
@@ -175,9 +163,6 @@ func (client *Client) GetSpamCounts(options map[string]interface{}) (SpamCounts,
 	return res, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // TrackedDay - tracked emails sent on a specific day
 type TrackedDay struct {
 	// Date - self explanatory
@@ -210,9 +195,6 @@ func (client *Client) GetTrackedCounts(options map[string]interface{}) (TrackedC
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // OpenedDay - opened outbound emails sent on a specific day
 type OpenedDay struct {
@@ -250,9 +232,6 @@ func (client *Client) GetOpenCounts(options map[string]interface{}) (OpenCounts,
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // PlatformCounts contains day-to-day usages, along with totals of email usages by platform
 type PlatformCounts struct {

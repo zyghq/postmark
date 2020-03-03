@@ -56,9 +56,6 @@ func (x InboundMessage) Time() (time.Time, error) {
 	return time.Parse(time.RFC1123Z, x.Date)
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetInboundMessage fetches a specific inbound message via serverID
 func (client *Client) GetInboundMessage(messageID string) (InboundMessage, error) {
 	res := InboundMessage{}
@@ -69,9 +66,6 @@ func (client *Client) GetInboundMessage(messageID string) (InboundMessage, error
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type inboundMessagesResponse struct {
 	TotalCount int64
@@ -101,9 +95,6 @@ func (client *Client) GetInboundMessages(count int64, offset int64, options map[
 	return res.Messages, res.TotalCount, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // BypassInboundMessage - Bypass rules for a blocked inbound message
 func (client *Client) BypassInboundMessage(messageID string) error {
 	res := APIError{}
@@ -119,9 +110,6 @@ func (client *Client) BypassInboundMessage(messageID string) error {
 
 	return err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // RetryInboundMessage - Retry a failed inbound message for processing
 func (client *Client) RetryInboundMessage(messageID string) error {

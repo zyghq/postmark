@@ -61,9 +61,6 @@ type MessageEvent struct {
 	Details map[string]string
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetOutboundMessage fetches a specific outbound message via serverID
 func (client *Client) GetOutboundMessage(messageID string) (OutboundMessage, error) {
 	res := OutboundMessage{}
@@ -75,9 +72,6 @@ func (client *Client) GetOutboundMessage(messageID string) (OutboundMessage, err
 	return res, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetOutboundMessageDump fetches the raw source of message. If no dump is available this will return an empty string.
 func (client *Client) GetOutboundMessageDump(messageID string) (string, error) {
 	res := dumpResponse{}
@@ -88,9 +82,6 @@ func (client *Client) GetOutboundMessageDump(messageID string) (string, error) {
 	}, &res)
 	return res.Body, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type outboundMessagesResponse struct {
 	TotalCount int64
@@ -119,9 +110,6 @@ func (client *Client) GetOutboundMessages(count int64, offset int64, options map
 	}, &res)
 	return res.Messages, res.TotalCount, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // Open represents a single email open.
 type Open struct {
@@ -170,9 +158,6 @@ func (client *Client) GetOutboundMessagesOpens(count int64, offset int64, option
 	}, &res)
 	return res.Opens, res.TotalCount, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // GetOutboundMessageOpens fetches a list of opens for a specific message
 // It returns a Open slice, the total opens count, and any error that occurred

@@ -41,9 +41,6 @@ type Server struct {
 	InboundSpamThreshold int64
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetServer fetches a specific server via serverID
 func (client *Client) GetServer(serverID string) (Server, error) {
 	res := Server{}
@@ -54,9 +51,6 @@ func (client *Client) GetServer(serverID string) (Server, error) {
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // EditServer updates details for a specific server with serverID
 func (client *Client) EditServer(serverID string, server Server) (Server, error) {

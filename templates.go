@@ -33,9 +33,6 @@ type TemplateInfo struct {
 	Active bool
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // GetTemplate fetches a specific template via TemplateID
 func (client *Client) GetTemplate(templateID string) (Template, error) {
 	res := Template{}
@@ -46,9 +43,6 @@ func (client *Client) GetTemplate(templateID string) (Template, error) {
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 type templatesResponse struct {
 	TotalCount int64
@@ -74,9 +68,6 @@ func (client *Client) GetTemplates(count int64, offset int64) ([]TemplateInfo, i
 	return res.Templates, res.TotalCount, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // CreateTemplate saves a new template to the server
 func (client *Client) CreateTemplate(template Template) (TemplateInfo, error) {
 	res := TemplateInfo{}
@@ -89,9 +80,6 @@ func (client *Client) CreateTemplate(template Template) (TemplateInfo, error) {
 	return res, err
 }
 
-///////////////////////////////////////
-///////////////////////////////////////
-
 // EditTemplate updates details for a specific template with templateID
 func (client *Client) EditTemplate(templateID string, template Template) (TemplateInfo, error) {
 	res := TemplateInfo{}
@@ -103,9 +91,6 @@ func (client *Client) EditTemplate(templateID string, template Template) (Templa
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // DeleteTemplate removes a template (with templateID) from the server
 func (client *Client) DeleteTemplate(templateID string) error {
@@ -122,9 +107,6 @@ func (client *Client) DeleteTemplate(templateID string) error {
 
 	return err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // ValidateTemplateBody contains the template/render model combination to be validated
 type ValidateTemplateBody struct {
@@ -169,9 +151,6 @@ func (client *Client) ValidateTemplate(validateTemplateBody ValidateTemplateBody
 	}, &res)
 	return res, err
 }
-
-///////////////////////////////////////
-///////////////////////////////////////
 
 // TemplatedEmail is used to send an email via a template
 type TemplatedEmail struct {
