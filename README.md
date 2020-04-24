@@ -3,9 +3,8 @@
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/postmark)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/postmark.svg?branch=master)](https://travis-ci.com/mrz1836/postmark)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/postmark)](https://goreportcard.com/report/github.com/mrz1836/postmark)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0f79f6c5a19c41ce85fe0dc5a5c288b2)](https://www.codacy.com/app/mrz1818/postmark?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrz1836/postmark&amp;utm_campaign=Badge_Grade)
 [![Release](https://img.shields.io/github/release-pre/mrz1836/postmark.svg?style=flat&v=1)](https://github.com/mrz1836/postmark/releases)
-[![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://godoc.org/github.com/mrz1836/postmark)
+[![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://pkg.go.dev/github.com/mrz1836/postmark)
 
 A Golang package for the using Postmark API.
 
@@ -32,7 +31,7 @@ func main() {
 		From:       "no-reply@example.com",
 		To:         "tito@example.com",
 		Subject:    "Reset your password",
-		HtmlBody:   "...",
+		HTMLBody:   "...",
 		TextBody:   "...",
 		Tag:        "pw-reset",
 		TrackOpens: true,
@@ -47,6 +46,8 @@ func main() {
 Swap out HTTPClient for use on Google App Engine:
 
 ```go
+package main
+
 import (
     "github.com/mrz1836/postmark"
     "google.golang.org/appengine"
