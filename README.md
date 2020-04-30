@@ -9,7 +9,7 @@
 A Golang package for the using Postmark API.
 
 ### Installation
-```bash
+```shell script
 go get -u github.com/mrz1836/postmark
 ```
 
