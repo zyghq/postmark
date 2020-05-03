@@ -1,4 +1,5 @@
 # Postmark
+> Fork from [Keighl's Postmark](https://github.com/keighl/postmark)
 
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/postmark)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/postmark.svg?branch=master)](https://travis-ci.com/mrz1836/postmark)
@@ -14,7 +15,6 @@ go get -u github.com/mrz1836/postmark
 ```
 
 ### Basic Usage
-
 Grab your [`Server Token`](https://account.postmarkapp.com/servers/XXXX/credentials), and your [`Account Token`](https://account.postmarkapp.com/account/edit).
 
 ```go
