@@ -22,4 +22,4 @@ notifications:
 
 # Run scripts in parallel
 script:
-  - make test-short
+  - make test

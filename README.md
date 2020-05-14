@@ -1,5 +1,5 @@
 # Postmark
-> Fork from [Keighl's Postmark](https://github.com/keighl/postmark)
+> Fork from [Keighl's Postmark](https://github.com/keighl/postmark) (A Golang package for the using Postmark API)
 
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/postmark)](https://golang.org/)
 [![Build Status](https://travis-ci.com/mrz1836/postmark.svg?branch=master)](https://travis-ci.com/mrz1836/postmark)
@@ -7,12 +7,14 @@
 [![Release](https://img.shields.io/github/release-pre/mrz1836/postmark.svg?style=flat&v=1)](https://github.com/mrz1836/postmark/releases)
 [![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://pkg.go.dev/github.com/mrz1836/postmark)
 
-A Golang package for the using Postmark API.
+<br/>
 
 ### Installation
 ```shell script
 go get -u github.com/mrz1836/postmark
 ```
+
+<br/>
 
 ### Basic Usage
 Grab your [`Server Token`](https://account.postmarkapp.com/servers/XXXX/credentials), and your [`Account Token`](https://account.postmarkapp.com/account/edit).
@@ -63,6 +65,8 @@ client.HTTPClient = urlfetch.Client(ctx)
 
 // ...
 ```
+
+<br/>
 
 ### API Coverage
 
