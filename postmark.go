@@ -3,6 +3,7 @@ package postmark
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -58,7 +59,7 @@ func (client *Client) doRequest(opts parameters, dst interface{}) (err error) {
 	url := fmt.Sprintf("%s/%s", client.BaseURL, opts.Path)
 
 	var req *http.Request
-	req, err = http.NewRequest(opts.Method, url, nil)
+	req, err = http.NewRequestWithContext(context.Background(), opts.Method, url, nil)
 	if err != nil {
 		return
 	}
