@@ -178,6 +178,8 @@ type TemplatedEmail struct {
 	Headers []Header `json:",omitempty"`
 	// TrackOpens: Activate open tracking for this email.
 	TrackOpens bool `json:",omitempty"`
+	// TrackLinks: Activate link tracking. Possible options: "None", "HtmlAndText", "HtmlOnly", "TextOnly".
+	TrackLinks string `json:",omitempty"`
 	// Attachments: List of attachments
 	Attachments []Attachment `json:",omitempty"`
 	// MessageStream: MessageStream will default to the outbound message stream ID (Default Transactional Stream) if no message stream ID is provided.
