@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -52,8 +53,7 @@ func TestSendEmail(t *testing.T) {
 	})
 
 	// Success
-	res, err := client.SendEmail(testEmail)
-
+	res, err := client.SendEmail(context.Background(), testEmail)
 	if err != nil {
 		t.Fatalf("SendEmail: %s", err.Error())
 	}
@@ -71,7 +71,7 @@ func TestSendEmail(t *testing.T) {
 		"Message": "Sender signature not confirmed"
 	}`
 
-	_, err = client.SendEmail(testEmail)
+	_, err = client.SendEmail(context.Background(), testEmail)
 
 	if err == nil {
 		t.Fatalf("SendEmail should have failed")
@@ -100,8 +100,7 @@ func TestSendEmailBatch(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.SendEmailBatch([]Email{testEmail, testEmail})
-
+	res, err := client.SendEmailBatch(context.Background(), []Email{testEmail, testEmail})
 	if err != nil {
 		t.Fatalf("SendEmailBatch: %s", err.Error())
 	}

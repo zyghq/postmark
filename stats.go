@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 	"net/url"
 )
@@ -35,7 +36,7 @@ type OutboundStats struct {
 
 // GetOutboundStats - Gets a brief overview of statistics for all of your outbound email.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#overview
-func (client *Client) GetOutboundStats(options map[string]interface{}) (OutboundStats, error) {
+func (client *Client) GetOutboundStats(ctx context.Context, options map[string]interface{}) (OutboundStats, error) {
 	res := OutboundStats{}
 
 	values := &url.Values{}
@@ -43,7 +44,7 @@ func (client *Client) GetOutboundStats(options map[string]interface{}) (Outbound
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound?%s", values.Encode()),
 		TokenType: serverToken,
@@ -69,14 +70,14 @@ type SendCounts struct {
 
 // GetSentCounts - Gets a total count of emails you’ve sent out.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#sent-counts
-func (client *Client) GetSentCounts(options map[string]interface{}) (SendCounts, error) {
+func (client *Client) GetSentCounts(ctx context.Context, options map[string]interface{}) (SendCounts, error) {
 	res := SendCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/sends?%s", values.Encode()),
 		TokenType: serverToken,
@@ -114,14 +115,14 @@ type BounceCounts struct {
 
 // GetBounceCounts - Gets total counts of emails you’ve sent out that have been returned as bounced.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#bounce-counts
-func (client *Client) GetBounceCounts(options map[string]interface{}) (BounceCounts, error) {
+func (client *Client) GetBounceCounts(ctx context.Context, options map[string]interface{}) (BounceCounts, error) {
 	res := BounceCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/bounces?%s", values.Encode()),
 		TokenType: serverToken,
@@ -148,14 +149,14 @@ type SpamCounts struct {
 // GetSpamCounts - Gets a total count of recipients who have marked your email as spam.
 // Days that did not produce statistics won’t appear in the JSON response.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#spam-complaints
-func (client *Client) GetSpamCounts(options map[string]interface{}) (SpamCounts, error) {
+func (client *Client) GetSpamCounts(ctx context.Context, options map[string]interface{}) (SpamCounts, error) {
 	res := SpamCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/spam?%s", values.Encode()),
 		TokenType: serverToken,
@@ -181,14 +182,14 @@ type TrackedCounts struct {
 
 // GetTrackedCounts - Gets a total count of emails you’ve sent with open tracking enabled.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#email-tracked-count
-func (client *Client) GetTrackedCounts(options map[string]interface{}) (TrackedCounts, error) {
+func (client *Client) GetTrackedCounts(ctx context.Context, options map[string]interface{}) (TrackedCounts, error) {
 	res := TrackedCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/tracked?%s", values.Encode()),
 		TokenType: serverToken,
@@ -218,14 +219,14 @@ type OpenCounts struct {
 
 // GetOpenCounts - Gets total counts of recipients who opened your emails. This is only recorded when open tracking is enabled for that email.
 // Available options: http://developer.postmarkapp.com/developer-api-stats.html#email-opens-count
-func (client *Client) GetOpenCounts(options map[string]interface{}) (OpenCounts, error) {
+func (client *Client) GetOpenCounts(ctx context.Context, options map[string]interface{}) (OpenCounts, error) {
 	res := OpenCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/opens?%s", values.Encode()),
 		TokenType: serverToken,
@@ -269,14 +270,14 @@ type PlatformDay struct {
 }
 
 // GetPlatformCounts gets the email platform usage
-func (client *Client) GetPlatformCounts(options map[string]interface{}) (PlatformCounts, error) {
+func (client *Client) GetPlatformCounts(ctx context.Context, options map[string]interface{}) (PlatformCounts, error) {
 	res := PlatformCounts{}
 	values := &url.Values{}
 	for k, v := range options {
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("stats/outbound/platform?%s", values.Encode()),
 		TokenType: serverToken,

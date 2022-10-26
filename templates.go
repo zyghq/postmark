@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 	"net/url"
 )
@@ -34,9 +35,9 @@ type TemplateInfo struct {
 }
 
 // GetTemplate fetches a specific template via TemplateID
-func (client *Client) GetTemplate(templateID string) (Template, error) {
+func (client *Client) GetTemplate(ctx context.Context, templateID string) (Template, error) {
 	res := Template{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("templates/%s", templateID),
 		TokenType: serverToken,
@@ -53,14 +54,14 @@ type templatesResponse struct {
 // It returns a TemplateInfo slice, the total template count, and any error that occurred
 // Note: TemplateInfo only returns a subset of template attributes, use GetTemplate(id) to
 // retrieve all template info.
-func (client *Client) GetTemplates(count int64, offset int64) ([]TemplateInfo, int64, error) {
+func (client *Client) GetTemplates(ctx context.Context, count int64, offset int64) ([]TemplateInfo, int64, error) {
 	res := templatesResponse{}
 
 	values := &url.Values{}
 	values.Add("count", fmt.Sprintf("%d", count))
 	values.Add("offset", fmt.Sprintf("%d", offset))
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("templates?%s", values.Encode()),
 		TokenType: serverToken,
@@ -69,9 +70,9 @@ func (client *Client) GetTemplates(count int64, offset int64) ([]TemplateInfo, i
 }
 
 // CreateTemplate saves a new template to the server
-func (client *Client) CreateTemplate(template Template) (TemplateInfo, error) {
+func (client *Client) CreateTemplate(ctx context.Context, template Template) (TemplateInfo, error) {
 	res := TemplateInfo{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "templates",
 		Payload:   template,
@@ -81,9 +82,9 @@ func (client *Client) CreateTemplate(template Template) (TemplateInfo, error) {
 }
 
 // EditTemplate updates details for a specific template with templateID
-func (client *Client) EditTemplate(templateID string, template Template) (TemplateInfo, error) {
+func (client *Client) EditTemplate(ctx context.Context, templateID string, template Template) (TemplateInfo, error) {
 	res := TemplateInfo{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "PUT",
 		Path:      fmt.Sprintf("templates/%s", templateID),
 		Payload:   template,
@@ -93,9 +94,9 @@ func (client *Client) EditTemplate(templateID string, template Template) (Templa
 }
 
 // DeleteTemplate removes a template (with templateID) from the server
-func (client *Client) DeleteTemplate(templateID string) error {
+func (client *Client) DeleteTemplate(ctx context.Context, templateID string) error {
 	res := APIError{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "DELETE",
 		Path:      fmt.Sprintf("templates/%s", templateID),
 		TokenType: serverToken,
@@ -141,9 +142,9 @@ type ValidationError struct {
 }
 
 // ValidateTemplate validates the provided template/render model combination
-func (client *Client) ValidateTemplate(validateTemplateBody ValidateTemplateBody) (ValidateTemplateResponse, error) {
+func (client *Client) ValidateTemplate(ctx context.Context, validateTemplateBody ValidateTemplateBody) (ValidateTemplateResponse, error) {
 	res := ValidateTemplateResponse{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "templates/validate",
 		Payload:   validateTemplateBody,
@@ -187,9 +188,9 @@ type TemplatedEmail struct {
 }
 
 // SendTemplatedEmail sends an email using a template (TemplateID)
-func (client *Client) SendTemplatedEmail(email TemplatedEmail) (EmailResponse, error) {
+func (client *Client) SendTemplatedEmail(ctx context.Context, email TemplatedEmail) (EmailResponse, error) {
 	res := EmailResponse{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "email/withTemplate",
 		Payload:   email,
@@ -199,12 +200,12 @@ func (client *Client) SendTemplatedEmail(email TemplatedEmail) (EmailResponse, e
 }
 
 // SendTemplatedEmailBatch sends batch email using a template (TemplateID)
-func (client *Client) SendTemplatedEmailBatch(emails []TemplatedEmail) ([]EmailResponse, error) {
+func (client *Client) SendTemplatedEmailBatch(ctx context.Context, emails []TemplatedEmail) ([]EmailResponse, error) {
 	var res []EmailResponse
-	var formatEmails = map[string]interface{}{
+	formatEmails := map[string]interface{}{
 		"Messages": emails,
 	}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "email/batchWithTemplates",
 		Payload:   formatEmails,

@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 	"net/url"
 	"time"
@@ -57,9 +58,9 @@ func (x InboundMessage) Time() (time.Time, error) {
 }
 
 // GetInboundMessage fetches a specific inbound message via serverID
-func (client *Client) GetInboundMessage(messageID string) (InboundMessage, error) {
+func (client *Client) GetInboundMessage(ctx context.Context, messageID string) (InboundMessage, error) {
 	res := InboundMessage{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("messages/inbound/%s/details", messageID),
 		TokenType: serverToken,
@@ -75,7 +76,7 @@ type inboundMessagesResponse struct {
 // GetInboundMessages fetches a list of inbound message on the server
 // It returns a InboundMessage slice, the total message count, and any error that occurred
 // http://developer.postmarkapp.com/developer-api-messages.html#inbound-message-search
-func (client *Client) GetInboundMessages(count int64, offset int64, options map[string]interface{}) ([]InboundMessage, int64, error) {
+func (client *Client) GetInboundMessages(ctx context.Context, count int64, offset int64, options map[string]interface{}) ([]InboundMessage, int64, error) {
 	res := inboundMessagesResponse{}
 
 	values := &url.Values{}
@@ -86,7 +87,7 @@ func (client *Client) GetInboundMessages(count int64, offset int64, options map[
 		values.Add(k, fmt.Sprintf("%v", v))
 	}
 
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("messages/inbound?%s", values.Encode()),
 		TokenType: serverToken,
@@ -96,9 +97,9 @@ func (client *Client) GetInboundMessages(count int64, offset int64, options map[
 }
 
 // BypassInboundMessage - Bypass rules for a blocked inbound message
-func (client *Client) BypassInboundMessage(messageID string) error {
+func (client *Client) BypassInboundMessage(ctx context.Context, messageID string) error {
 	res := APIError{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "PUT",
 		Path:      fmt.Sprintf("messages/inbound/%s/bypass", messageID),
 		TokenType: serverToken,
@@ -112,9 +113,9 @@ func (client *Client) BypassInboundMessage(messageID string) error {
 }
 
 // RetryInboundMessage - Retry a failed inbound message for processing
-func (client *Client) RetryInboundMessage(messageID string) error {
+func (client *Client) RetryInboundMessage(ctx context.Context, messageID string) error {
 	res := APIError{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "PUT",
 		Path:      fmt.Sprintf("messages/inbound/%s/retry", messageID),
 		TokenType: serverToken,

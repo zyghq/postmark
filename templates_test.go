@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -22,7 +23,7 @@ func TestGetTemplate(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetTemplate("1234")
+	res, err := client.GetTemplate(context.Background(), "1234")
 	if err != nil {
 		t.Fatalf("Template: %s", err.Error())
 	}
@@ -53,7 +54,7 @@ func TestGetTemplates(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, count, err := client.GetTemplates(100, 10)
+	res, count, err := client.GetTemplates(context.Background(), 100, 10)
 	if err != nil {
 		t.Fatalf("GetTemplates: %s", err.Error())
 	}
@@ -78,13 +79,12 @@ func TestCreateTemplate(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.CreateTemplate(Template{
+	res, err := client.CreateTemplate(context.Background(), Template{
 		Name:     "Onboarding Email",
 		Subject:  "Hello from {{company.name}}!",
 		TextBody: "Hello, {{name}}!",
 		HTMLBody: "<html><body>Hello, {{name}}!</body></html>",
 	})
-
 	if err != nil {
 		t.Fatalf("CreateTemplate: %s", err.Error())
 	}
@@ -105,7 +105,7 @@ func TestEditTemplate(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.EditTemplate("1234", Template{
+	res, err := client.EditTemplate(context.Background(), "1234", Template{
 		Name:     "Onboarding Emailzzzzz",
 		Subject:  "Hello from {{company.name}}!",
 		TextBody: "Hello, {{name}}!",
@@ -131,7 +131,7 @@ func TestDeleteTemplate(t *testing.T) {
 	})
 
 	// Success
-	err := client.DeleteTemplate("1234")
+	err := client.DeleteTemplate(context.Background(), "1234")
 	if err != nil {
 		t.Fatalf("DeleteTemplate: %s", err.Error())
 	}
@@ -142,7 +142,7 @@ func TestDeleteTemplate(t *testing.T) {
 	  "Message": "Invalid JSON"
 	}`
 
-	err = client.DeleteTemplate("1234")
+	err = client.DeleteTemplate(context.Background(), "1234")
 	if err == nil {
 		t.Fatalf("DeleteTemplate  should have failed")
 	}
@@ -190,7 +190,7 @@ func TestValidateTemplate(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.ValidateTemplate(ValidateTemplateBody{
+	res, err := client.ValidateTemplate(context.Background(), ValidateTemplateBody{
 		Subject:  "{{#company}}{{name}}{{/company}} {{subjectHeadline}}",
 		TextBody: "{{#company}}{{address}}{{/company}}{{#each person}} {{name}} {{/each}}",
 		HTMLBody: "{{#company}}{{phone}}{{/company}}{{#each person}} {{name}} {{/each}}",
@@ -199,7 +199,6 @@ func TestValidateTemplate(t *testing.T) {
 		},
 		InlineCSSForHTMLTestRender: false,
 	})
-
 	if err != nil {
 		t.Fatalf("ValidateTemplate: %s", err.Error())
 	}
@@ -259,7 +258,7 @@ func TestSendTemplatedEmail(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.SendTemplatedEmail(testTemplatedEmail)
+	res, err := client.SendTemplatedEmail(context.Background(), testTemplatedEmail)
 	if err != nil {
 		t.Fatalf("SendTemplatedEmail: %s", err.Error())
 	}
@@ -290,8 +289,7 @@ func TestSendTemplatedBatch(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.SendTemplatedEmailBatch([]TemplatedEmail{testTemplatedEmail, testTemplatedEmail})
-
+	res, err := client.SendTemplatedEmailBatch(context.Background(), []TemplatedEmail{testTemplatedEmail, testTemplatedEmail})
 	if err != nil {
 		t.Fatalf("SendTemplatedBatch: %s", err.Error())
 	}
@@ -299,5 +297,4 @@ func TestSendTemplatedBatch(t *testing.T) {
 	if len(res) != 2 {
 		t.Fatalf("SendTemplatedBatch: wrong response array size!")
 	}
-
 }

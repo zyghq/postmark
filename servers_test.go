@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -33,7 +34,7 @@ func TestGetServer(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetServer("1")
+	res, err := client.GetServer(context.Background(), "1")
 	if err != nil {
 		t.Fatalf("GetServer: %s", err.Error())
 	}
@@ -69,10 +70,9 @@ func TestEditServer(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.EditServer("1234", Server{
+	res, err := client.EditServer(context.Background(), "1234", Server{
 		Name: "Production Testing",
 	})
-
 	if err != nil {
 		t.Fatalf("EditServer: %s", err.Error())
 	}

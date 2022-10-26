@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -27,11 +28,10 @@ func TestGetOutboundStats(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetOutboundStats(map[string]interface{}{
+	res, err := client.GetOutboundStats(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetOutboundStats: %v", err.Error())
 	}
@@ -68,11 +68,10 @@ func TestGetSentCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetSentCounts(map[string]interface{}{
+	res, err := client.GetSentCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetSentCounts: %v", err.Error())
 	}
@@ -118,11 +117,10 @@ func TestGetBounceCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetBounceCounts(map[string]interface{}{
+	res, err := client.GetBounceCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetBounceCounts: %v", err.Error())
 	}
@@ -159,11 +157,10 @@ func TestGetSpamCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetSpamCounts(map[string]interface{}{
+	res, err := client.GetSpamCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetSpamCounts: %v", err.Error())
 	}
@@ -208,11 +205,10 @@ func TestGetTrackedCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetTrackedCounts(map[string]interface{}{
+	res, err := client.GetTrackedCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetTrackedCounts: %v", err.Error())
 	}
@@ -263,11 +259,10 @@ func TestGetOpenCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetOpenCounts(map[string]interface{}{
+	res, err := client.GetOpenCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetOpenCounts: %v", err.Error())
 	}
@@ -310,11 +305,10 @@ func TestGetPlatformCounts(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetPlatformCounts(map[string]interface{}{
+	res, err := client.GetPlatformCounts(context.Background(), map[string]interface{}{
 		"fromdate": "2014-01-01",
 		"todate":   "2014-02-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetPlatformCounts: %v", err.Error())
 	}
