@@ -54,7 +54,7 @@ func (client *Client) GetOutboundStats(ctx context.Context, options map[string]i
 
 // SendDay - send stats for a specific day
 type SendDay struct {
-	// Date - self explanatory
+	// Date - self-explanatory
 	Date string
 	// Sent - number of emails sent
 	Sent int64
@@ -87,7 +87,7 @@ func (client *Client) GetSentCounts(ctx context.Context, options map[string]inte
 
 // BounceDay - bounce stats for a specific day
 type BounceDay struct {
-	// Date - self explanatory
+	// Date - self-explanatory
 	Date string
 	// HardBounce - number of hard bounces
 	HardBounce int64
@@ -132,7 +132,7 @@ func (client *Client) GetBounceCounts(ctx context.Context, options map[string]in
 
 // SpamDay - spam complaints for a specific day
 type SpamDay struct {
-	// Date - self explanatory
+	// Date - self-explanatory
 	Date string
 	// SpamComplaint - number of spam complaints received
 	SpamComplaint int64
@@ -166,7 +166,7 @@ func (client *Client) GetSpamCounts(ctx context.Context, options map[string]inte
 
 // TrackedDay - tracked emails sent on a specific day
 type TrackedDay struct {
-	// Date - self explanatory
+	// Date - self-explanatory
 	Date string
 	// Tracked - number of emails tracked sent
 	Tracked int64
@@ -199,7 +199,7 @@ func (client *Client) GetTrackedCounts(ctx context.Context, options map[string]i
 
 // OpenedDay - opened outbound emails sent on a specific day
 type OpenedDay struct {
-	// Date - self explanatory
+	// Date - self-explanatory
 	Date string
 	// Opens - Indicates total number of opened emails. This total includes recipients who opened your email multiple times.
 	Opens int64

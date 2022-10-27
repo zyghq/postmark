@@ -6,7 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -68,7 +68,7 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 		if err != nil {
 			return
 		}
-		req.Body = ioutil.NopCloser(bytes.NewBuffer(payloadData))
+		req.Body = io.NopCloser(bytes.NewBuffer(payloadData))
 	}
 
 	req.Header.Add("Accept", "application/json")
@@ -92,7 +92,7 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 		_ = res.Body.Close()
 	}()
 	var body []byte
-	body, err = ioutil.ReadAll(res.Body)
+	body, err = io.ReadAll(res.Body)
 	if err != nil {
 		return
 	}

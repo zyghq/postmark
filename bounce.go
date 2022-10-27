@@ -61,11 +61,11 @@ type Bounce struct {
 	Email string
 	// BouncedAt: Timestamp of bounce
 	BouncedAt time.Time
-	// DumpAvailable: Specifies whether or not you can get a raw dump from this bounce. Postmark does not store bounce dumps older than 30 days.
+	// DumpAvailable: Specifies whether you can get a raw dump from this bounce. Postmark does not store bounce dumps older than 30 days.
 	DumpAvailable bool
 	// Inactive: Specifies if the bounce caused Postmark to deactivate this email.
 	Inactive bool
-	// CanActivate: Specifies whether or not you are able to reactivate this email.
+	// CanActivate: Specifies whether you are able to reactivate this email.
 	CanActivate bool
 	// Subject: Email subject
 	Subject string
@@ -116,7 +116,7 @@ type dumpResponse struct {
 	Body string
 }
 
-// GetBounceDump fetches a SMTP data dump for a single bounce
+// GetBounceDump fetches an SMTP data dump for a single bounce
 func (client *Client) GetBounceDump(ctx context.Context, bounceID int64) (string, error) {
 	res := dumpResponse{}
 	path := fmt.Sprintf("bounces/%v/dump", bounceID)

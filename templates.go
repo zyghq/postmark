@@ -161,7 +161,7 @@ type TemplatedEmail struct {
 	TemplateAlias string `json:",omitempty"`
 	// TemplateModel: The model to be applied to the specified template to generate HtmlBody, TextBody, and Subject.
 	TemplateModel map[string]interface{} `json:",omitempty"`
-	// InlineCSS: By default, if the specified template contains an HtmlBody, we will apply the style blocks as inline attributes to the rendered HTML content. You may opt-out of this behavior by passing false for this request field.
+	// InlineCSS: By default, if the specified template contains an HtmlBody, we will apply the style blocks as inline attributes to the rendered HTML content. You may opt out of this behavior by passing false for this request field.
 	InlineCSS bool `json:"InlineCSS,omitempty"`
 	// From: The sender email address. Must have a registered and confirmed Sender Signature.
 	From string `json:",omitempty"`

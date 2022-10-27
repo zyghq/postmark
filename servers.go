@@ -3,6 +3,7 @@ package postmark
 import (
 	"context"
 	"fmt"
+	"net/http"
 )
 
 // Server represents a server registered in your Postmark account
@@ -17,7 +18,7 @@ type Server struct {
 	ServerLink string
 	// Color of the server in the rack screen. Purple Blue Turquoise Green Red Yellow Grey
 	Color string
-	// SMTPAPIActivated specifies whether or not SMTP is enabled on this server.
+	// SMTPAPIActivated specifies whether SMTP is enabled on this server.
 	SMTPAPIActivated bool `json:"SmtpApiActivated"`
 	// RawEmailEnabled allows raw email to be sent with inbound.
 	RawEmailEnabled bool
@@ -46,7 +47,7 @@ type Server struct {
 func (client *Client) GetServer(ctx context.Context, serverID string) (Server, error) {
 	res := Server{}
 	err := client.doRequest(ctx, parameters{
-		Method:    "GET",
+		Method:    http.MethodGet,
 		Path:      fmt.Sprintf("servers/%s", serverID),
 		TokenType: accountToken,
 	}, &res)
@@ -55,11 +56,11 @@ func (client *Client) GetServer(ctx context.Context, serverID string) (Server, e
 
 // EditServer updates details for a specific server with serverID
 func (client *Client) EditServer(ctx context.Context, serverID string, server Server) (Server, error) {
-	res := Server{}
+	// res := Server{}
 	err := client.doRequest(ctx, parameters{
-		Method:    "PUT",
+		Method:    http.MethodPut,
 		Path:      fmt.Sprintf("servers/%s", serverID),
 		TokenType: accountToken,
-	}, &res)
-	return res, err
+	}, &server)
+	return server, err
 }

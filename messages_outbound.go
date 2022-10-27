@@ -138,7 +138,7 @@ type outboundMessageOpensResponse struct {
 }
 
 // GetOutboundMessagesOpens fetches a list of opens on the server
-// It returns a Open slice, the total opens count, and any error that occurred
+// It returns an Open slice, the total opens count, and any error that occurred
 // To get opens for a specific message, use GetOutboundMessageOpens()
 // Available options: http://developer.postmarkapp.com/developer-api-messages.html#message-opens
 func (client *Client) GetOutboundMessagesOpens(ctx context.Context, count int64, offset int64, options map[string]interface{}) ([]Open, int64, error) {
@@ -161,7 +161,7 @@ func (client *Client) GetOutboundMessagesOpens(ctx context.Context, count int64,
 }
 
 // GetOutboundMessageOpens fetches a list of opens for a specific message
-// It returns a Open slice, the total opens count, and any error that occurred
+// It returns an Open slice, the total opens count, and any error that occurred
 func (client *Client) GetOutboundMessageOpens(ctx context.Context, messageID string, count int64, offset int64) ([]Open, int64, error) {
 	res := outboundMessageOpensResponse{}
 
