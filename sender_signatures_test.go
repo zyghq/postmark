@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -34,7 +35,7 @@ func TestGetSenderSignatures(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetSenderSignatures(50, 0)
+	res, err := client.GetSenderSignatures(context.Background(), 50, 0)
 	if err != nil {
 		t.Fatalf("GetSenderSignatures: %s", err.Error())
 	}

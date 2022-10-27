@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -51,7 +52,7 @@ func TestGetDeliveryStats(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetDeliveryStats()
+	res, err := client.GetDeliveryStats(context.Background())
 	if err != nil {
 		t.Fatalf("GetDeliveryStats: %s", err.Error())
 	}
@@ -104,10 +105,9 @@ func TestGetBounces(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, total, err := client.GetBounces(100, 0, map[string]interface{}{
+	_, total, err := client.GetBounces(context.Background(), 100, 0, map[string]interface{}{
 		"tag": "Invitation",
 	})
-
 	if err != nil {
 		t.Fatalf("GetBounces: %s", err.Error())
 	}
@@ -140,8 +140,7 @@ func TestGetBounce(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetBounce(692560173)
-
+	res, err := client.GetBounce(context.Background(), 692560173)
 	if err != nil {
 		t.Fatalf("GetBounce: %s", err.Error())
 	}
@@ -160,8 +159,7 @@ func TestGetBounceDump(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetBounceDump(692560173)
-
+	res, err := client.GetBounceDump(context.Background(), 692560173)
 	if err != nil {
 		t.Fatalf("GetBounceDump: %s", err.Error())
 	}
@@ -197,8 +195,7 @@ func TestActivateBounce(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, mess, err := client.ActivateBounce(692560173)
-
+	res, mess, err := client.ActivateBounce(context.Background(), 692560173)
 	if err != nil {
 		t.Fatalf("ActivateBounce: %s", err.Error())
 	}
@@ -222,8 +219,7 @@ func TestGetBouncedTags(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetBouncedTags()
-
+	res, err := client.GetBouncedTags(context.Background())
 	if err != nil {
 		t.Fatalf("GetBouncedTags: %s", err.Error())
 	}

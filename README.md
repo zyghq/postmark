@@ -23,6 +23,8 @@ Grab your [`Server Token`](https://account.postmarkapp.com/servers/XXXX/credenti
 package main
 
 import (
+	"context"
+
 	"github.com/mrz1836/postmark"
 )
 
@@ -39,7 +41,7 @@ func main() {
 		TrackOpens: true,
 	}
 
-	_, err := client.SendEmail(email)
+	_, err := client.SendEmail(context.Background(), email)
 	if err != nil {
 		panic(err)
 	}

@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"testing"
@@ -66,8 +67,7 @@ func TestGetOutboundMessage(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetOutboundMessage("07311c54-0687-4ab9-b034-b54b5bad88ba")
-
+	res, err := client.GetOutboundMessage(context.Background(), "07311c54-0687-4ab9-b034-b54b5bad88ba")
 	if err != nil {
 		t.Fatalf("GetOutboundMessage: %s", err.Error())
 	}
@@ -86,8 +86,7 @@ func TestGetOutboundMessageDump(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, err := client.GetOutboundMessageDump("07311c54-0687-4ab9-b034-b54b5bad88ba")
-
+	_, err := client.GetOutboundMessageDump(context.Background(), "07311c54-0687-4ab9-b034-b54b5bad88ba")
 	if err != nil {
 		t.Fatalf("GetOutboundMessageDump: %s", err.Error())
 	}
@@ -124,14 +123,13 @@ func TestGetOutboundMessages(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, total, err := client.GetOutboundMessages(100, 0, map[string]interface{}{
+	_, total, err := client.GetOutboundMessages(context.Background(), 100, 0, map[string]interface{}{
 		"recipient": "john.doe@yahoo.com",
 		"tag":       "welcome",
 		"status":    "",
 		"todate":    "2015-01-12",
 		"fromdate":  "2015-01-01",
 	})
-
 	if err != nil {
 		t.Fatalf("GetOutboundMessages: %s", err.Error())
 	}
@@ -182,10 +180,9 @@ func TestGetOutboundMessagesOpens(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, total, err := client.GetOutboundMessagesOpens(100, 0, map[string]interface{}{
+	_, total, err := client.GetOutboundMessagesOpens(context.Background(), 100, 0, map[string]interface{}{
 		"recipient": "john.doe@yahoo.com",
 	})
-
 	if err != nil {
 		t.Fatalf("GetOutboundMessagesOpens: %s", err.Error())
 	}
@@ -235,8 +232,7 @@ func TestGetOutboundMessageOpens(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, total, err := client.GetOutboundMessageOpens("927e56d4-dc66-4070-bbf0-1db76c2ae14b", 100, 0)
-
+	_, total, err := client.GetOutboundMessageOpens(context.Background(), "927e56d4-dc66-4070-bbf0-1db76c2ae14b", 100, 0)
 	if err != nil {
 		t.Fatalf("GetOutboundMessageOpens: %s", err.Error())
 	}

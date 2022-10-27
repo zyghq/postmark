@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -88,8 +89,7 @@ func TestGetInboundMessage(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	res, err := client.GetInboundMessage("cc5727a0-ea30-4e79-baea-aa43c9628ac4")
-
+	res, err := client.GetInboundMessage(context.Background(), "cc5727a0-ea30-4e79-baea-aa43c9628ac4")
 	if err != nil {
 		t.Fatalf("GetInboundMessage: %s", err.Error())
 	}
@@ -142,13 +142,12 @@ func TestGetInboundMessages(t *testing.T) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
-	_, total, err := client.GetInboundMessages(100, 0, map[string]interface{}{
+	_, total, err := client.GetInboundMessages(context.Background(), 100, 0, map[string]interface{}{
 		"recipient": "john.doe@yahoo.com",
 		"fromdate":  "2015-02-01",
 		"todate":    "2015-03-01",
 		"status":    "blocked",
 	})
-
 	if err != nil {
 		t.Fatalf("GetInboundMessages: %s", err.Error())
 	}
@@ -169,7 +168,7 @@ func TestBypassInboundMessage(t *testing.T) {
 	})
 
 	// Success
-	err := client.BypassInboundMessage("792a3e9d-0078-40df-a6b0-fc78f87bf277")
+	err := client.BypassInboundMessage(context.Background(), "792a3e9d-0078-40df-a6b0-fc78f87bf277")
 	if err != nil {
 		t.Fatalf("BypassInboundMessage: %s", err.Error())
 	}
@@ -179,7 +178,7 @@ func TestBypassInboundMessage(t *testing.T) {
 		"ErrorCode": 701,
 		"Message": "This message was not found or cannot be bypassed."
 	}`
-	err = client.BypassInboundMessage("792a3e9d-0078-40df-a6b0-fc78f87bf277")
+	err = client.BypassInboundMessage(context.Background(), "792a3e9d-0078-40df-a6b0-fc78f87bf277")
 	if err != nil && err.Error() != "This message was not found or cannot be bypassed." {
 		t.Fatalf("BypassInboundMessage should have failed")
 	}
@@ -196,7 +195,7 @@ func TestRetryInboundMessage(t *testing.T) {
 	})
 
 	// Success
-	err := client.RetryInboundMessage("041e3d29-737d-491e-9a13-a94d3rjkjka13")
+	err := client.RetryInboundMessage(context.Background(), "041e3d29-737d-491e-9a13-a94d3rjkjka13")
 	if err != nil {
 		t.Fatalf("RetryInboundMessage: %s", err.Error())
 	}
@@ -207,7 +206,7 @@ func TestRetryInboundMessage(t *testing.T) {
 	  "Message": "This message was not found or cannot be retried."
 	}`
 
-	err = client.RetryInboundMessage("041e3d29-737d-491e-9a13-a94d3rjkjka13")
+	err = client.RetryInboundMessage(context.Background(), "041e3d29-737d-491e-9a13-a94d3rjkjka13")
 	if err != nil && err.Error() != "This message was not found or cannot be retried." {
 		t.Fatalf("RetryInboundMessage should have failed")
 	}

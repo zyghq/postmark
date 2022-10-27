@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 	"time"
 )
@@ -75,9 +76,9 @@ type EmailResponse struct {
 }
 
 // SendEmail sends, well, an email.
-func (client *Client) SendEmail(email Email) (EmailResponse, error) {
+func (client *Client) SendEmail(ctx context.Context, email Email) (EmailResponse, error) {
 	res := EmailResponse{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "email",
 		Payload:   email,
@@ -94,9 +95,9 @@ func (client *Client) SendEmail(email Email) (EmailResponse, error) {
 // SendEmailBatch sends multiple emails together
 // Note, individual emails in the batch can error, so it would be wise to
 // range over the responses and sniff for errors
-func (client *Client) SendEmailBatch(emails []Email) ([]EmailResponse, error) {
+func (client *Client) SendEmailBatch(ctx context.Context, emails []Email) ([]EmailResponse, error) {
 	var res []EmailResponse
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "POST",
 		Path:      "email/batch",
 		Payload:   emails,

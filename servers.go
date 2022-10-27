@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"context"
 	"fmt"
 )
 
@@ -42,9 +43,9 @@ type Server struct {
 }
 
 // GetServer fetches a specific server via serverID
-func (client *Client) GetServer(serverID string) (Server, error) {
+func (client *Client) GetServer(ctx context.Context, serverID string) (Server, error) {
 	res := Server{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "GET",
 		Path:      fmt.Sprintf("servers/%s", serverID),
 		TokenType: accountToken,
@@ -53,9 +54,9 @@ func (client *Client) GetServer(serverID string) (Server, error) {
 }
 
 // EditServer updates details for a specific server with serverID
-func (client *Client) EditServer(serverID string, server Server) (Server, error) {
+func (client *Client) EditServer(ctx context.Context, serverID string, server Server) (Server, error) {
 	res := Server{}
-	err := client.doRequest(parameters{
+	err := client.doRequest(ctx, parameters{
 		Method:    "PUT",
 		Path:      fmt.Sprintf("servers/%s", serverID),
 		TokenType: accountToken,
