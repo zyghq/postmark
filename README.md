@@ -2,7 +2,7 @@
 > Fork from [Keighl's Postmark](https://github.com/keighl/postmark) (A Golang package for the using Postmark API)
 
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/postmark)](https://golang.org/)
-[![Build Status](https://img.shields.io/github/workflow/status/mrz1836/postmark/run-go-tests?logo=github&v=3)](https://github.com/mrz1836/postmark/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/mrz1836/postmark/run-tests.yml?branch=master&logo=github&v=3)](https://github.com/mrz1836/postmark/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/postmark)](https://goreportcard.com/report/github.com/mrz1836/postmark)
 [![Release](https://img.shields.io/github/release-pre/mrz1836/postmark.svg?style=flat&v=1)](https://github.com/mrz1836/postmark/releases)
 [![GoDoc](https://godoc.org/github.com/mrz1836/postmark?status.svg)](https://pkg.go.dev/github.com/mrz1836/postmark)
