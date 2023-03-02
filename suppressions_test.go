@@ -33,7 +33,7 @@ func TestGetSuppressions(t *testing.T) {
 	  }`
 
 	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err := client.GetSuppressions(context.Background(), "outbound", nil)
@@ -62,7 +62,7 @@ func TestGetSuppressions(t *testing.T) {
 	  }`
 
 	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, req *http.Request) {
-		w.Write([]byte(responseJSON))
+		_, _ = w.Write([]byte(responseJSON))
 	})
 
 	res, err = client.GetSuppressions(context.Background(), "outbound", map[string]interface{}{
@@ -72,6 +72,9 @@ func TestGetSuppressions(t *testing.T) {
 		"suppressionreason": HardBounceReason,
 		"origin":            RecipientOrigin,
 	})
+	if err != nil {
+		t.Fatalf(err.Error())
+	}
 
 	if len(res) != 1 {
 		t.Fatalf("GetSuppressions: wrong number of suppression (%d)", len(res))
@@ -80,5 +83,4 @@ func TestGetSuppressions(t *testing.T) {
 	if res[0].EmailAddress != "address@wildbit.com" {
 		t.Fatalf("GetSuppressions: wrong suppression email address: %s", res[0].EmailAddress)
 	}
-
 }

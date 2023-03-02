@@ -3,6 +3,7 @@ package postmark
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"net/url"
 	"time"
 )
@@ -81,7 +82,7 @@ func (client *Client) GetSuppressions(
 
 	res := suppressionsResponse{}
 	err := client.doRequest(ctx, parameters{
-		Method:    "GET",
+		Method:    http.MethodGet,
 		Path:      path,
 		TokenType: serverToken,
 	}, &res)
