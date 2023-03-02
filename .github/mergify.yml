@@ -177,6 +177,7 @@ pull_request_rules:
         - author!=paulrees
         - author!=pilinux
         - author!=billinghamj
+        - author!=fawkesley
     actions:
       comment:
         message: Welcome to our open-source project! 💘
