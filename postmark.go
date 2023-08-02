@@ -102,7 +102,7 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 
 // APIError represents errors returned by Postmark
 type APIError struct {
-	// ErrorCode: see error codes here (http://developer.postmarkapp.com/developer-api-overview.html#error-codes)
+	// ErrorCode: see error codes here (https://postmarkapp.com/developer/api/overview#error-codes)
 	ErrorCode int64
 	// Message contains error details
 	Message string
