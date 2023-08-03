@@ -69,7 +69,7 @@ type EmailResponse struct {
 	SubmittedAt time.Time
 	// MessageID: ID of message
 	MessageID string
-	// ErrorCode: API Error Codes
+	// ErrorCode: see error codes here (https://postmarkapp.com/developer/api/overview#error-codes)
 	ErrorCode int64
 	// Message: Response message
 	Message string
