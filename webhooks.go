@@ -18,7 +18,7 @@ type WebhookHTTPAuth struct {
 // WebhookTriggerEnabled holds configuration for webhooks which can only be
 // enabled or disabled.
 type WebhookTriggerEnabled struct {
-	// Specifies whether or not this webhook is enabled.
+	// Specifies whether this webhook is enabled.
 	Enabled bool `json:"Enabled"`
 }
 
@@ -26,7 +26,7 @@ type WebhookTriggerEnabled struct {
 // enabled/disabled and optionally include message contents.
 type WebhookTriggerIncContent struct {
 	WebhookTriggerEnabled
-	// Specifies whether or not the full content of the email is included in webhook POST.
+	// Specifies whether the full content of the email is included in webhook POST.
 	IncludeContent bool `json:"IncludeContent"`
 }
 
