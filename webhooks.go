@@ -69,9 +69,9 @@ type Webhook struct {
 	Triggers WebhookTrigger `json:"Triggers"`
 }
 
-// List webhooks for a message stream. If the message stream is empty it will
-// return all webhooks for the server. A non-existent message stream will result
-// in an error.
+// ListWebhooks returns all webhooks for a message stream. If the message stream
+// is empty it will return all webhooks for the server. A non-existent message
+// stream will result in an error.
 func (client *Client) ListWebhooks(ctx context.Context, messageStream string) ([]Webhook, error) {
 	var res struct {
 		Webhooks []Webhook
@@ -84,7 +84,7 @@ func (client *Client) ListWebhooks(ctx context.Context, messageStream string) ([
 	return res.Webhooks, err
 }
 
-// Get a specific webhook by the webhook's ID.
+// GetWebhook retrieves a specific webhook by the webhook's ID.
 func (client *Client) GetWebhook(ctx context.Context, id int) (Webhook, error) {
 	var res Webhook
 	err := client.doRequest(ctx, parameters{
@@ -95,7 +95,7 @@ func (client *Client) GetWebhook(ctx context.Context, id int) (Webhook, error) {
 	return res, err
 }
 
-// Create a new webhook. Do not specify the ID in the provided webhook. The
+// CreateWebhook makes a new Webhook. Do not specify the ID in the provided webhook. The
 // returned webhook if successful will include the ID of the created webhook.
 func (client *Client) CreateWebhook(ctx context.Context, webhook Webhook) (Webhook, error) {
 	var res Webhook
@@ -108,7 +108,7 @@ func (client *Client) CreateWebhook(ctx context.Context, webhook Webhook) (Webho
 	return res, err
 }
 
-// Edit a webhook. Do not specify the ID in the provided webhook. The
+// EditWebhook alters an existing webhook. Do not specify the ID in the provided webhook. The
 // returned webhook if successful will be the resulting state of after the edit.
 func (client *Client) EditWebhook(ctx context.Context, id int, webhook Webhook) (Webhook, error) {
 	var res Webhook
@@ -121,7 +121,7 @@ func (client *Client) EditWebhook(ctx context.Context, id int, webhook Webhook) 
 	return res, err
 }
 
-// Delete a webhook from the server.
+// DeleteWebhook removes a webhook from the server.
 func (client *Client) DeleteWebhook(ctx context.Context, id int) error {
 	res := APIError{}
 	err := client.doRequest(ctx, parameters{

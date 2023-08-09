@@ -9,6 +9,10 @@ import (
 	"goji.io/pat"
 )
 
+const (
+	outbound = "outbound"
+)
+
 func TestGetWebhooks(t *testing.T) {
 	responseJSON := `{ 
 		"Webhooks": [
@@ -160,7 +164,7 @@ func TestGetWebhook(t *testing.T) {
 	if res.ID != 1234567 {
 		t.Fatalf("Webhook: wrong ID!")
 	}
-	if res.MessageStream != "outbound" {
+	if res.MessageStream != outbound {
 		t.Fatalf("Webhook: wrong message stream!")
 	}
 	if res.HTTPHeaders[0].Name != "name" {
@@ -174,7 +178,7 @@ func TestGetWebhook(t *testing.T) {
 func TestCreateWebhook(t *testing.T) {
 	webhook := Webhook{
 		URL:           "http://www.example.com/webhook-test-tracking",
-		MessageStream: "outbound",
+		MessageStream: outbound,
 		HTTPAuth: &WebhookHTTPAuth{
 			Username: "user",
 			Password: "pass",
@@ -209,7 +213,7 @@ func TestCreateWebhook(t *testing.T) {
 			t.Fatalf("Webhook: %s", err.Error())
 		}
 
-		if res.MessageStream != "outbound" {
+		if res.MessageStream != outbound {
 			t.Fatalf("Webhook: wrong message stream!")
 		}
 		if !res.Triggers.Open.Enabled {
@@ -234,7 +238,7 @@ func TestCreateWebhook(t *testing.T) {
 	if res.ID != 12345 {
 		t.Fatalf("Webhook: wrong ID!")
 	}
-	if res.MessageStream != "outbound" {
+	if res.MessageStream != outbound {
 		t.Fatalf("Webhook: wrong message stream!")
 	}
 	if !res.Triggers.Open.Enabled {
@@ -245,7 +249,7 @@ func TestCreateWebhook(t *testing.T) {
 func TestEditWebhook(t *testing.T) {
 	webhook := Webhook{
 		URL:           "http://www.example.com/webhook-test-tracking",
-		MessageStream: "outbound",
+		MessageStream: outbound,
 		HTTPAuth: &WebhookHTTPAuth{
 			Username: "user",
 			Password: "pass",
@@ -280,7 +284,7 @@ func TestEditWebhook(t *testing.T) {
 			t.Fatalf("Webhook: %s", err.Error())
 		}
 
-		if res.MessageStream != "outbound" {
+		if res.MessageStream != outbound {
 			t.Fatalf("Webhook: wrong message stream!")
 		}
 		if !res.Triggers.Open.Enabled {
@@ -305,7 +309,7 @@ func TestEditWebhook(t *testing.T) {
 	if res.ID != 12345 {
 		t.Fatalf("Webhook: wrong ID!")
 	}
-	if res.MessageStream != "outbound" {
+	if res.MessageStream != outbound {
 		t.Fatalf("Webhook: wrong message stream!")
 	}
 	if !res.Triggers.Open.Enabled {
