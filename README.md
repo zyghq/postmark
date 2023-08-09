@@ -137,6 +137,12 @@ client.HTTPClient = urlfetch.Client(ctx)
         * [ ] Create a trigger for inbound rule
         * [ ] Delete a single trigger
         * [ ] List triggers
+* [x] Webhooks
+    * [x] List webhooks
+    * [x] Get webhooks
+    * [x] Create webhooks
+    * [x] Edit webhooks
+    * [x] Delete webhooks
 
 <details>
 <summary><strong><code>Library Deployment</code></strong></summary>
@@ -172,7 +178,7 @@ install               Install the application
 install-go            Install the application (Using Native Go)
 install-releaser      Install the GoReleaser application
 lint                  Run the golangci-lint application (install if not found)
-release               Full production release (creates release in Github)
+release               Full production release (creates release in GitHub)
 release               Runs common.release then runs godocs
 release-snap          Test the full release (build binaries)
 release-test          Full production test release (everything except deploy)
@@ -198,7 +204,7 @@ vet                   Run the Go vet application
 
 ## Examples & Tests
 All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/postmark/actions) and
-uses [Go version 1.17.x](https://golang.org/doc/go1.17). View the [configuration file](.github/workflows/run-tests.yml).
+uses [Go version 1.18.x](https://golang.org/doc/go1.18). View the [configuration file](.github/workflows/run-tests.yml).
 
 Run all tests (including integration tests)
 ```shell script
