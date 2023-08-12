@@ -1,4 +1,4 @@
-// Package postmark ...
+// Package postmark encapsulates the Postmark API via Go
 package postmark
 
 import (
@@ -57,15 +57,15 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 	url := fmt.Sprintf("%s/%s", client.BaseURL, opts.Path)
 
 	var req *http.Request
-	req, err = http.NewRequestWithContext(ctx, opts.Method, url, nil)
-	if err != nil {
+	if req, err = http.NewRequestWithContext(
+		ctx, opts.Method, url, nil,
+	); err != nil {
 		return
 	}
 
 	if opts.Payload != nil {
 		var payloadData []byte
-		payloadData, err = json.Marshal(opts.Payload)
-		if err != nil {
+		if payloadData, err = json.Marshal(opts.Payload); err != nil {
 			return
 		}
 		req.Body = io.NopCloser(bytes.NewBuffer(payloadData))
@@ -77,14 +77,12 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 	switch opts.TokenType {
 	case accountToken:
 		req.Header.Add("X-Postmark-Account-Token", client.AccountToken)
-
 	default:
 		req.Header.Add("X-Postmark-Server-Token", client.ServerToken)
 	}
 
 	var res *http.Response
-	res, err = client.HTTPClient.Do(req)
-	if err != nil {
+	if res, err = client.HTTPClient.Do(req); err != nil {
 		return
 	}
 
@@ -92,23 +90,20 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 		_ = res.Body.Close()
 	}()
 	var body []byte
-	body, err = io.ReadAll(res.Body)
-	if err != nil {
+	if body, err = io.ReadAll(res.Body); err != nil {
 		return
 	}
 
-	if res.StatusCode >= 400 {
+	if res.StatusCode >= http.StatusBadRequest {
 		// If the status code is not a success, attempt to unmarshall the body into the APIError struct.
 		var apiErr APIError
-		err = json.Unmarshal(body, &apiErr)
-		if err != nil {
+		if err = json.Unmarshal(body, &apiErr); err != nil {
 			return
 		}
 		return apiErr
 	}
 
-	err = json.Unmarshal(body, dst)
-	return
+	return json.Unmarshal(body, dst)
 }
 
 // APIError represents errors returned by Postmark
