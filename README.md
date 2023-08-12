@@ -107,6 +107,13 @@ client.HTTPClient = urlfetch.Client(ctx)
     * [x] `GET /messages/inbound/:id/details`
     * [x] `PUT /messages/inbound/:id/bypass`
     * [x] `PUT /messages/inbound/:id/retry`
+* [x] Message Streams
+    * [x] `GET /message-streams`
+    * [x] `POST /message-streams`
+    * [x] `GET /message-streams/{stream_ID}`
+    * [x] `PATCH /message-streams/{stream_ID}`
+    * [x] `POST /message-streams/{stream_ID}/archive`
+    * [x] `POST /message-streams/{stream_ID}/unarchive`
 * [ ] Sender signatures
     * [x] `GET /senders`
     * [ ] Get a sender signature’s details
