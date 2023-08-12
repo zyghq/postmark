@@ -17,7 +17,7 @@ const (
 	// InboundMessageStreamType indicates a message stream is for inbound messages.
 	InboundMessageStreamType MessageStreamType = "Inbound"
 	// BroadcastMessageStreamType indicates a message stream is for broadcast messages.
-	BroadcastMessageStreamType MessageStreamType = "Broadcast"
+	BroadcastMessageStreamType MessageStreamType = "Broadcasts"
 	// TransactionalMessageStreamType indicates a message stream is for transactional messages.
 	TransactionalMessageStreamType MessageStreamType = "Transactional"
 
