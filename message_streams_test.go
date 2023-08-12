@@ -101,6 +101,28 @@ func TestListMessageStreams(t *testing.T) {
 	}
 }
 
+func TestGetUnknownMessageStream(t *testing.T) {
+	responseJSON := `{"ErrorCode":1226,"Message":"The message stream for the provided 'ID' was not found."}`
+
+	tMux.HandleFunc(pat.Get("/message-streams/unknown"), func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		_, _ = w.Write([]byte(responseJSON))
+	})
+
+	res, err := client.GetMessageStream(context.Background(), "unknown")
+	if err == nil {
+		t.Fatalf("MessageStream: expected error")
+	}
+	if err.Error() != "The message stream for the provided 'ID' was not found." {
+		t.Fatalf("MessageStream: wrong error message (%s)", err.Error())
+	}
+
+	var zero MessageStream
+	if res != zero {
+		t.Fatalf("MessageStream: expected empty response")
+	}
+}
+
 func TestGetMessageStream(t *testing.T) {
 	responseJSON := `{
 		"ID": "broadcasts",

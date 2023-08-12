@@ -96,6 +96,17 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 	if err != nil {
 		return
 	}
+
+	if res.StatusCode >= 400 {
+		// If the status code is not a success, attempt to unmarshall the body into the APIError struct.
+		var apiErr APIError
+		err = json.Unmarshal(body, &apiErr)
+		if err != nil {
+			return
+		}
+		return apiErr
+	}
+
 	err = json.Unmarshal(body, dst)
 	return
 }
@@ -103,9 +114,9 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 // APIError represents errors returned by Postmark
 type APIError struct {
 	// ErrorCode: see error codes here (https://postmarkapp.com/developer/api/overview#error-codes)
-	ErrorCode int64
+	ErrorCode int64 `json:"ErrorCode"`
 	// Message contains error details
-	Message string
+	Message string `json:"Message"`
 }
 
 // Error returns the error message details
