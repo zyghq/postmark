@@ -73,12 +73,17 @@ type Webhook struct {
 // is empty it will return all webhooks for the server. A non-existent message
 // stream will result in an error.
 func (client *Client) ListWebhooks(ctx context.Context, messageStream string) ([]Webhook, error) {
+	msgStreamParam := ""
+	if messageStream != "" {
+		msgStreamParam = fmt.Sprintf("?MessageStream=%s", messageStream)
+	}
+
 	var res struct {
 		Webhooks []Webhook
 	}
 	err := client.doRequest(ctx, parameters{
 		Method:    http.MethodGet,
-		Path:      fmt.Sprintf("webhooks?MessageStream=%s", messageStream),
+		Path:      "webhooks" + msgStreamParam,
 		TokenType: serverToken,
 	}, &res)
 	return res.Webhooks, err
