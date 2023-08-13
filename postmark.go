@@ -10,7 +10,7 @@ import (
 	"net/http"
 )
 
-var postmarkURL = `https://api.postmarkapp.com`
+const postmarkURL = `https://api.postmarkapp.com`
 
 // Client provides a connection to the Postmark API
 type Client struct {
@@ -53,6 +53,7 @@ func NewClient(serverToken string, accountToken string) *Client {
 	}
 }
 
+// doRequest performs the request to the Postmark API
 func (client *Client) doRequest(ctx context.Context, opts parameters, dst interface{}) (err error) {
 	url := fmt.Sprintf("%s/%s", client.BaseURL, opts.Path)
 
