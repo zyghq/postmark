@@ -18,7 +18,7 @@ func init() {
 	tServer = httptest.NewServer(tMux)
 
 	transport := &http.Transport{
-		Proxy: func(req *http.Request) (*url.URL, error) {
+		Proxy: func(_ *http.Request) (*url.URL, error) {
 			// Reroute...
 			return url.Parse(tServer.URL)
 		},

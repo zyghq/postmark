@@ -85,7 +85,7 @@ func TestGetInboundMessage(t *testing.T) {
 		  "Status": "Blocked"
 	}`
 
-	tMux.HandleFunc(pat.Get("/messages/inbound/cc5727a0-ea30-4e79-baea-aa43c9628ac4/details"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/inbound/cc5727a0-ea30-4e79-baea-aa43c9628ac4/details"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -138,7 +138,7 @@ func TestGetInboundMessages(t *testing.T) {
 	   ]
 	}`
 
-	tMux.HandleFunc(pat.Get("/messages/inbound"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/inbound"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -163,7 +163,7 @@ func TestBypassInboundMessage(t *testing.T) {
 		"Message": "Successfully bypassed message: 792a3e9d-0078-40df-a6b0-fc78f87bf277."
 	}`
 
-	tMux.HandleFunc(pat.Put("/messages/inbound/792a3e9d-0078-40df-a6b0-fc78f87bf277/bypass"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Put("/messages/inbound/792a3e9d-0078-40df-a6b0-fc78f87bf277/bypass"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -190,7 +190,7 @@ func TestRetryInboundMessage(t *testing.T) {
 	  "Message": "Successfully rescheduled failed message: 041e3d29-737d-491e-9a13-a94d3rjkjka13."
 	}`
 
-	tMux.HandleFunc(pat.Put("/messages/inbound/041e3d29-737d-491e-9a13-a94d3rjkjka13/retry"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Put("/messages/inbound/041e3d29-737d-491e-9a13-a94d3rjkjka13/retry"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

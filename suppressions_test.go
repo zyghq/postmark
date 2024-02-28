@@ -32,7 +32,7 @@ func TestGetSuppressions(t *testing.T) {
 		]
 	  }`
 
-	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -60,7 +60,7 @@ func TestGetSuppressions(t *testing.T) {
 		]
 	  }`
 
-	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/message-streams/:StreamID/suppressions/dump"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -105,7 +105,7 @@ func TestCreateSuppressions(t *testing.T) {
 		]
 	  }`
 
-	tMux.HandleFunc(pat.Post("/message-streams/:StreamID/suppressions"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/message-streams/:StreamID/suppressions"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -138,7 +138,7 @@ func TestDeleteSuppressions(t *testing.T) {
 		]
 	  }`
 
-	tMux.HandleFunc(pat.Post("/message-streams/:StreamID/suppressions/delete"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/message-streams/:StreamID/suppressions/delete"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

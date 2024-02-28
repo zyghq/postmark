@@ -24,7 +24,7 @@ func TestGetOutboundStats(t *testing.T) {
 	  "WithReadTimeRecorded": 10
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -64,7 +64,7 @@ func TestGetSentCounts(t *testing.T) {
 	  "Sent": 615
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/sends"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/sends"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -113,7 +113,7 @@ func TestGetBounceCounts(t *testing.T) {
 	  "Transient": 16
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/bounces"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/bounces"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -153,7 +153,7 @@ func TestGetSpamCounts(t *testing.T) {
 	  "SpamComplaint": 10
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/spam"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/spam"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -201,7 +201,7 @@ func TestGetTrackedCounts(t *testing.T) {
 	  "Tracked": 111
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/tracked"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/tracked"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -255,7 +255,7 @@ func TestGetOpenCounts(t *testing.T) {
 	  "Unique": 26
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/opens"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/opens"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -301,7 +301,7 @@ func TestGetPlatformCounts(t *testing.T) {
 		"WebMail": 2
 	}`
 
-	tMux.HandleFunc(pat.Get("/stats/outbound/platform"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/stats/outbound/platform"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

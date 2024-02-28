@@ -14,13 +14,13 @@ const (
 )
 
 func TestGetWebhooks(t *testing.T) {
-	responseJSON := `{ 
+	responseJSON := `{
 		"Webhooks": [
 			{
-				"ID": 1234567, 
+				"ID": 1234567,
 				"Url": "http://www.example.com/webhook-test-tracking",
 				"MessageStream": "outbound",
-				"HttpAuth":{ 
+				"HttpAuth":{
 					"Username": "user",
 					"Password": "pass"
 				},
@@ -30,22 +30,22 @@ func TestGetWebhooks(t *testing.T) {
 						"Value": "value"
 					}
 				],
-				"Triggers": { 
-					"Open":{ 
+				"Triggers": {
+					"Open":{
 						"Enabled": true,
 						"PostFirstOpenOnly": false
 					},
-					"Click":{ 
+					"Click":{
 						"Enabled": true
 					},
-					"Delivery":{ 
+					"Delivery":{
 						"Enabled": true
 					},
-					"Bounce":{ 
+					"Bounce":{
 						"Enabled": false,
 						"IncludeContent": false
 					},
-					"SpamComplaint":{ 
+					"SpamComplaint":{
 						"Enabled": false,
 						"IncludeContent": false
 					},
@@ -55,10 +55,10 @@ func TestGetWebhooks(t *testing.T) {
 				}
 			},
 			{
-				"ID": 1234568, 
+				"ID": 1234568,
 				"Url": "http://www.example.com/webhook-test-bounce",
 				"MessageStream": "outbound",
-				"HttpAuth":{ 
+				"HttpAuth":{
 					"Username": "user",
 					"Password": "pass"
 				},
@@ -68,22 +68,22 @@ func TestGetWebhooks(t *testing.T) {
 						"Value": "value"
 					}
 				],
-				"Triggers": { 
-					"Open":{ 
+				"Triggers": {
+					"Open":{
 						"Enabled":false,
 						"PostFirstOpenOnly":false
 					},
-					"Click":{ 
+					"Click":{
 						"Enabled": false
 					},
-					"Delivery":{ 
+					"Delivery":{
 						"Enabled": false
 					},
-					"Bounce":{ 
+					"Bounce":{
 						"Enabled" :true,
 						"IncludeContent": false
 					},
-					"SpamComplaint":{ 
+					"SpamComplaint":{
 						"Enabled": false,
 						"IncludeContent": false
 					},
@@ -95,7 +95,7 @@ func TestGetWebhooks(t *testing.T) {
 		]
 	}`
 
-	tMux.HandleFunc(pat.Get("/webhooks"), func(w http.ResponseWriter, r *http.Request) {
+	tMux.HandleFunc(pat.Get("/webhooks"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -114,10 +114,10 @@ func TestGetWebhooks(t *testing.T) {
 
 func TestGetWebhook(t *testing.T) {
 	responseJSON := `{
-		"ID": 1234567, 
+		"ID": 1234567,
 		"Url": "http://www.example.com/webhook-test-tracking",
 		"MessageStream": "outbound",
-		"HttpAuth":{ 
+		"HttpAuth":{
 			"Username": "user",
 			"Password": "pass"
 		},
@@ -127,22 +127,22 @@ func TestGetWebhook(t *testing.T) {
 				"Value": "value"
 			}
 		],
-		"Triggers": { 
-			"Open":{ 
+		"Triggers": {
+			"Open":{
 				"Enabled": true,
 				"PostFirstOpenOnly": false
 			},
-			"Click":{ 
+			"Click":{
 				"Enabled": true
 			},
-			"Delivery":{ 
+			"Delivery":{
 				"Enabled": true
 			},
-			"Bounce":{ 
+			"Bounce":{
 				"Enabled": false,
 				"IncludeContent": false
 			},
-			"SpamComplaint":{ 
+			"SpamComplaint":{
 				"Enabled": false,
 				"IncludeContent": false
 			},
@@ -152,7 +152,7 @@ func TestGetWebhook(t *testing.T) {
 		}
 	}`
 
-	tMux.HandleFunc(pat.Get("/webhooks/:webhookID"), func(w http.ResponseWriter, r *http.Request) {
+	tMux.HandleFunc(pat.Get("/webhooks/:webhookID"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -323,7 +323,7 @@ func TestDeleteWebhook(t *testing.T) {
 	  "Message": "Webhook 1234 removed."
 	}`
 
-	tMux.HandleFunc(pat.Delete("/webhooks/:webhookID"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Delete("/webhooks/:webhookID"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

@@ -48,7 +48,7 @@ func TestGetDeliveryStats(t *testing.T) {
 		}
 	]}`
 
-	tMux.HandleFunc(pat.Get("/deliverystats"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/deliverystats"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -101,7 +101,7 @@ func TestGetBounces(t *testing.T) {
 		  ]
 	}`
 
-	tMux.HandleFunc(pat.Get("/bounces"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/bounces"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -136,7 +136,7 @@ func TestGetBounce(t *testing.T) {
 	  "Content": "Return-Path: <>\r\nReceived: …"
 	}`
 
-	tMux.HandleFunc(pat.Get("/bounces/692560173"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/bounces/692560173"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -155,7 +155,7 @@ func TestGetBounceDump(t *testing.T) {
 	  "Body": "..."
 	}`
 
-	tMux.HandleFunc(pat.Get("/bounces/692560173/dump"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/bounces/692560173/dump"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -191,7 +191,7 @@ func TestActivateBounce(t *testing.T) {
 		}
 	}`
 
-	tMux.HandleFunc(pat.Put("/bounces/692560173/activate"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Put("/bounces/692560173/activate"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -215,7 +215,7 @@ func TestGetBouncedTags(t *testing.T) {
 		"tag3"]
 	`
 
-	tMux.HandleFunc(pat.Get("/bounces/tags"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/bounces/tags"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

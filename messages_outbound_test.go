@@ -63,7 +63,7 @@ func TestGetOutboundMessage(t *testing.T) {
 	  ]
 	}`
 
-	tMux.HandleFunc(pat.Get("/messages/outbound/07311c54-0687-4ab9-b034-b54b5bad88ba/details"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/outbound/07311c54-0687-4ab9-b034-b54b5bad88ba/details"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -82,7 +82,7 @@ func TestGetOutboundMessageDump(t *testing.T) {
 
 	responseJSON := fmt.Sprintf(`{"Body": "%s"}`, dump)
 
-	tMux.HandleFunc(pat.Get("/messages/outbound/07311c54-0687-4ab9-b034-b54b5bad88ba/dump"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/outbound/07311c54-0687-4ab9-b034-b54b5bad88ba/dump"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -119,7 +119,7 @@ func TestGetOutboundMessages(t *testing.T) {
 		]
 	}`
 
-	tMux.HandleFunc(pat.Get("/messages/outbound"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/outbound"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -176,7 +176,7 @@ func TestGetOutboundMessagesOpens(t *testing.T) {
 		]
 
 	}`
-	tMux.HandleFunc(pat.Get("/messages/outbound/opens"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/outbound/opens"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -228,7 +228,7 @@ func TestGetOutboundMessageOpens(t *testing.T) {
 	  ]
 	}`
 
-	tMux.HandleFunc(pat.Get("/messages/outbound/opens/927e56d4-dc66-4070-bbf0-1db76c2ae14b"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/messages/outbound/opens/927e56d4-dc66-4070-bbf0-1db76c2ae14b"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

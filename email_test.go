@@ -48,7 +48,7 @@ func TestSendEmail(t *testing.T) {
 		"Message": "OK"
 	}`
 
-	tMux.HandleFunc(pat.Post("/email"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/email"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -96,7 +96,7 @@ func TestSendEmailBatch(t *testing.T) {
 	  }
 	]`
 
-	tMux.HandleFunc(pat.Post("/email/batch"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/email/batch"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

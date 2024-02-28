@@ -34,7 +34,7 @@ func TestGetCurrentServer(t *testing.T) {
 			"InboundSpamThreshold": 0
 	}`
 
-	tMux.HandleFunc(pat.Get("/server"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/server"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -73,7 +73,7 @@ func TestEditCurrentServer(t *testing.T) {
   "InboundHash": "yourhash",
   "InboundSpamThreshold": 10
 }`
-	tMux.HandleFunc(pat.Put("/server"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Put("/server"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 

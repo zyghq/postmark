@@ -104,7 +104,7 @@ func TestListMessageStreams(t *testing.T) {
 func TestGetUnknownMessageStream(t *testing.T) {
 	responseJSON := `{"ErrorCode":1226,"Message":"The message stream for the provided 'ID' was not found."}`
 
-	tMux.HandleFunc(pat.Get("/message-streams/unknown"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/message-streams/unknown"), func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		_, _ = w.Write([]byte(responseJSON))
 	})
@@ -139,7 +139,7 @@ func TestGetMessageStream(t *testing.T) {
 		}
 	}`
 
-	tMux.HandleFunc(pat.Get("/message-streams/broadcasts"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Get("/message-streams/broadcasts"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -246,7 +246,7 @@ func TestCreateMessageStream(t *testing.T) {
 		},
 	}
 
-	tMux.HandleFunc(pat.Post("/message-streams"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/message-streams"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -273,7 +273,7 @@ func TestArchiveMessageStream(t *testing.T) {
 		"ExpectedPurgeDate": "2020-08-30T12:30:00.00-04:00"
 	}`
 
-	tMux.HandleFunc(pat.Post("/message-streams/transactional-dev/archive"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/message-streams/transactional-dev/archive"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
@@ -308,7 +308,7 @@ func TestUnarchiveMessageStream(t *testing.T) {
 		}
 	}`
 
-	tMux.HandleFunc(pat.Post("/message-streams/transactional-dev/unarchive"), func(w http.ResponseWriter, req *http.Request) {
+	tMux.HandleFunc(pat.Post("/message-streams/transactional-dev/unarchive"), func(w http.ResponseWriter, _ *http.Request) {
 		_, _ = w.Write([]byte(responseJSON))
 	})
 
