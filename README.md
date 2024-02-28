@@ -92,7 +92,9 @@ client.HTTPClient = urlfetch.Client(ctx)
     * [x] `DELETE /templates/:id`
     * [x] `POST /templates/validate`
 * [x] Suppressions
-    * [x] `GET /suppressions/:id`
+    * [x] `GET /suppressions/dump`
+    * [x] `POST /suppressions` 
+    * [x] `POST /suppressions/delete`
 * [x] Servers
     * [x] `GET /servers/:id`
     * [x] `PUT /servers/:id`
