@@ -92,6 +92,11 @@ type updateSuppressionsResponse struct {
 	Suppressions []SuppressionResponse
 }
 
+// suppressionsRequest - A message to send to the Postmark server for creating or deleting suppressions
+type suppressionsRequest struct {
+	Suppressions []Suppression
+}
+
 // GetSuppressions fetches email addresses in the list of suppression dump on the server
 // It returns a Suppressions slice, and any error that occurred
 // https://postmarkapp.com/developer/api/suppressions-api#suppression-dump
@@ -129,7 +134,7 @@ func (client *Client) CreateSuppressions(
 	err := client.doRequest(ctx, parameters{
 		Method:    http.MethodPost,
 		Path:      fmt.Sprintf("message-streams/%s/suppressions", streamID),
-		Payload:   suppressions,
+		Payload:   suppressionsRequest{Suppressions: suppressions},
 		TokenType: serverToken,
 	}, &res)
 	return res.Suppressions, err
@@ -146,7 +151,7 @@ func (client *Client) DeleteSuppressions(
 	err := client.doRequest(ctx, parameters{
 		Method:    http.MethodPost,
 		Path:      fmt.Sprintf("message-streams/%s/suppressions/delete", streamID),
-		Payload:   suppressions,
+		Payload:   suppressionsRequest{Suppressions: suppressions},
 		TokenType: serverToken,
 	}, &res)
 	return res.Suppressions, err
