@@ -70,7 +70,10 @@ func (client *Client) doRequest(ctx context.Context, opts parameters, dst interf
 			return
 		}
 		req.Body = io.NopCloser(bytes.NewBuffer(payloadData))
-	}
+		req.GetBody = func() (io.ReadCloser, error) {
+			return io.NopCloser(bytes.NewBuffer(payloadData)), nil
+		}
+        }
 
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
