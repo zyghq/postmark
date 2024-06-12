@@ -14,7 +14,7 @@ var (
 	client  *Client
 )
 
-func init() {
+func init() { //nolint:gochecknoinits // need to refactor this in the future
 	tServer = httptest.NewServer(tMux)
 
 	transport := &http.Transport{

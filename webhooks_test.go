@@ -207,7 +207,7 @@ func TestCreateWebhook(t *testing.T) {
 
 		var res Webhook
 		err := decoder.Decode(&res)
-		req.Body.Close()
+		_ = req.Body.Close()
 
 		if err != nil {
 			t.Fatalf("Webhook: %s", err.Error())
@@ -278,7 +278,7 @@ func TestEditWebhook(t *testing.T) {
 
 		var res Webhook
 		err := decoder.Decode(&res)
-		req.Body.Close()
+		_ = req.Body.Close()
 
 		if err != nil {
 			t.Fatalf("Webhook: %s", err.Error())

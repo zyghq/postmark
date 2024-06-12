@@ -43,9 +43,9 @@ type Email struct {
 // Header - an email header
 type Header struct {
 	// Name: header name
-	Name string
+	Name string `json:",omitempty"`
 	// Value: header value
-	Value string
+	Value string `json:",omitempty"`
 }
 
 // Attachment is an optional encoded file to send along with an email
