@@ -127,3 +127,12 @@ func (client *Client) RetryInboundMessage(ctx context.Context, messageID string)
 
 	return err
 }
+
+// InboundMessageDetail - Additional attributes
+type InboundMessageDetail struct {
+	InboundMessage
+	Bcc               string      `json:"Bcc"`
+	BccFull           []Recipient `json:"BccFull"`
+	MessageStream     string      `json:"MessageStream"`
+	StrippedTextReply string      `json:"StrippedTextReply"`
+}
