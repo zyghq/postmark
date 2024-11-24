@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"github.com/mrz1836/postmark"
+	"github.com/zyghq/postmark"
 )
 
 func main() {

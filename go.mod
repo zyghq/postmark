@@ -1,4 +1,4 @@
-module github.com/mrz1836/postmark
+module github.com/zyghq/postmark
 
 go 1.18
 
