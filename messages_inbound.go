@@ -3,6 +3,7 @@ package postmark
 import (
 	"context"
 	"fmt"
+	"net/mail"
 	"net/url"
 	"time"
 )
@@ -52,9 +53,8 @@ type InboundMessage struct {
 }
 
 // Time returns a parsed time.Time struct
-// Inbound messages return as RFC1123Z strangely
 func (x InboundMessage) Time() (time.Time, error) {
-	return time.Parse(time.RFC1123Z, x.Date)
+	return mail.ParseDate(x.Date)
 }
 
 // GetInboundMessage fetches a specific inbound message via serverID
