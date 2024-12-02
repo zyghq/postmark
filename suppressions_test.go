@@ -72,7 +72,7 @@ func TestGetSuppressions(t *testing.T) {
 		"origin":            RecipientOrigin,
 	})
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%v", err.Error())
 	}
 
 	if len(res) != 1 {
@@ -111,7 +111,7 @@ func TestCreateSuppressions(t *testing.T) {
 
 	res, err := client.CreateSuppressions(context.Background(), "outbound", []Suppression{})
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%v", err.Error())
 	}
 
 	if len(res) != 3 {
@@ -144,7 +144,7 @@ func TestDeleteSuppressions(t *testing.T) {
 
 	res, err := client.DeleteSuppressions(context.Background(), "outbound", []Suppression{})
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatalf("%v", err.Error())
 	}
 
 	if len(res) != 3 {
