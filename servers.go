@@ -53,7 +53,6 @@ type Server struct {
 }
 
 func (s Server) MarshalJSON() ([]byte, error) {
-	// Create an auxiliary type to avoid recursion
 	type Aux Server
 
 	// If TrackLinks is empty, set it to "None"
@@ -70,10 +69,12 @@ func (s Server) MarshalJSON() ([]byte, error) {
 
 	return json.Marshal(&struct {
 		Aux
-		TrackLinks string `json:"TrackLinks"`
+		TrackLinks   string `json:"TrackLinks"`
+		DeliveryType string `json:"DeliveryType"`
 	}{
-		Aux:        Aux(s),
-		TrackLinks: trackLinks,
+		Aux:          Aux(s),
+		TrackLinks:   trackLinks,
+		DeliveryType: deliveryType,
 	})
 }
 
