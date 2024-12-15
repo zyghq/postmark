@@ -2,6 +2,7 @@ package postmark
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 )
 
@@ -45,6 +46,17 @@ func (client *Client) CreateDomain(ctx context.Context, req CreateDomainRequest)
 		Path:      "domains",
 		TokenType: accountToken,
 		Payload:   req,
+	}, &res)
+	return res, err
+}
+
+// GetDomain fetches as specific domain via domainID
+func (client *Client) GetDomain(ctx context.Context, domainID int64) (DomainDetail, error) {
+	res := DomainDetail{}
+	err := client.doRequest(ctx, parameters{
+		Method:    http.MethodGet,
+		Path:      fmt.Sprintf("domains/%d", domainID),
+		TokenType: accountToken,
 	}, &res)
 	return res, err
 }
