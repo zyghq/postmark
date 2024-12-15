@@ -6,31 +6,35 @@ import (
 	"net/http"
 )
 
-// MessageStreamType is an Enum representing the type of a message stream.
+// MessageStreamType is an Enum representing the type of message stream.
 type MessageStreamType string
 
 // MessageStreamUnsubscribeHandlingType is an Enum with the possible values for
 // the unsubscribe handling in a message stream.
 type MessageStreamUnsubscribeHandlingType string
 
-const (
-	// InboundMessageStreamType indicates a message stream is for inbound messages.
-	InboundMessageStreamType MessageStreamType = "Inbound"
-	// BroadcastMessageStreamType indicates a message stream is for broadcast messages.
-	BroadcastMessageStreamType MessageStreamType = "Broadcasts"
-	// TransactionalMessageStreamType indicates a message stream is for transactional messages.
-	TransactionalMessageStreamType MessageStreamType = "Transactional"
-
-	// NoneUnsubscribeHandlingType indicates a message stream unsubscribe
-	// handling will be performed by the user.
-	NoneUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "None"
-	// PostmarkUnsubscribeHandlingType indicates a message stream unsubscribe
-	// handling will be performed by postmark.
-	PostmarkUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "Postmark"
-	// CustomUnsubscribeHandlingType indicates a message stream unsubscribe
-	// handling is custom.
-	CustomUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "Custom"
-)
+//const (
+//	// InboundMessageStreamType indicates a message stream is for inbound messages.
+//	InboundMessageStreamType MessageStreamType = "Inbound"
+//
+//	// BroadcastMessageStreamType indicates a message stream is for broadcast messages.
+//	BroadcastMessageStreamType MessageStreamType = "Broadcasts"
+//
+//	// TransactionalMessageStreamType indicates a message stream is for transactional messages.
+//	TransactionalMessageStreamType MessageStreamType = "Transactional"
+//
+//	// NoneUnsubscribeHandlingType indicates a message stream unsubscribe
+//	// handling will be performed by the user.
+//	NoneUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "None"
+//
+//	// PostmarkUnsubscribeHandlingType indicates a message stream unsubscribe
+//	// handling will be performed by postmark.
+//	// PostmarkUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "Postmark"
+//
+//	// CustomUnsubscribeHandlingType indicates a message stream unsubscribe
+//	// handling is custom.
+//	CustomUnsubscribeHandlingType MessageStreamUnsubscribeHandlingType = "Custom"
+//)
 
 // MessageStreamSubscriptionManagementConfiguration is the configuration for
 // subscriptions to the message stream.

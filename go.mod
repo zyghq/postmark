@@ -1,5 +1,3 @@
 module github.com/zyghq/postmark
 
-go 1.18
-
-require goji.io v2.0.2+incompatible
+go 1.23
