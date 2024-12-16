@@ -71,3 +71,14 @@ func (client *Client) VerifyDKIM(ctx context.Context, domainID int64) (DomainDet
 	}, &res)
 	return res, err
 }
+
+// VerifyReturnPath Verify Return-Path DNS record for the specified domain.
+func (client *Client) VerifyReturnPath(ctx context.Context, domainID int64) (DomainDetail, error) {
+	res := DomainDetail{}
+	err := client.doRequest(ctx, parameters{
+		Method:    http.MethodPut,
+		Path:      fmt.Sprintf("domains/%d/verifyReturnPath", domainID),
+		TokenType: accountToken,
+	}, &res)
+	return res, err
+}
