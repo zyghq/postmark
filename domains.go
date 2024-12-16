@@ -60,3 +60,14 @@ func (client *Client) GetDomain(ctx context.Context, domainID int64) (DomainDeta
 	}, &res)
 	return res, err
 }
+
+// VerifyDKIM Verify DKIM keys for the specified domain.
+func (client *Client) VerifyDKIM(ctx context.Context, domainID int64) (DomainDetail, error) {
+	res := DomainDetail{}
+	err := client.doRequest(ctx, parameters{
+		Method:    http.MethodPut,
+		Path:      fmt.Sprintf("domains/%d/verifyDkim", domainID),
+		TokenType: accountToken,
+	}, &res)
+	return res, err
+}
